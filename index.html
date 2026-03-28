@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentSkills '26 — CAIS Workshop</title>
+<style>
+:root { --bg: #0a0a0a; --fg: #e8e8e8; --accent: #6366f1; --accent2: #818cf8; --muted: #888; --card: #141414; --border: #222; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+a { color: var(--accent2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.hero { text-align: center; padding: 80px 20px 60px; max-width: 900px; margin: 0 auto; }
+.hero h1 { font-size: 2.8em; font-weight: 800; margin-bottom: 10px; background: linear-gradient(135deg, #6366f1, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero .subtitle { font-size: 1.1em; color: var(--muted); margin-bottom: 20px; }
+.hero .conf { font-size: 1em; color: var(--accent2); font-weight: 600; }
+.hero .date { color: var(--muted); margin-top: 5px; }
+
+.badges { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+.badge { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; font-size: 0.85em; color: var(--muted); }
+
+section { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+h2 { font-size: 1.8em; font-weight: 700; margin-bottom: 20px; }
+h2 span { font-size: 0.7em; margin-right: 8px; }
+
+.pitch { font-size: 1.05em; color: #ccc; }
+.pitch strong { color: var(--fg); }
+
+.topics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+.topic { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.topic strong { color: var(--accent2); }
+.topic p { font-size: 0.9em; color: var(--muted); margin-top: 4px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th { text-align: left; padding: 8px 12px; border-bottom: 2px solid var(--border); color: var(--accent2); font-size: 0.85em; text-transform: uppercase; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 0.95em; }
+
+.schedule td:first-child { color: var(--accent2); font-weight: 600; white-space: nowrap; width: 120px; }
+
+.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
+.person { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+.person .name { font-weight: 600; margin-top: 8px; }
+.person .aff { font-size: 0.85em; color: var(--muted); }
+
+.cfp-box { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #2a2a4e; border-radius: 12px; padding: 30px; margin-top: 15px; }
+.cfp-box h3 { color: var(--accent2); margin-bottom: 10px; }
+.cfp-box ul { list-style: none; padding: 0; }
+.cfp-box li { padding: 4px 0; }
+.cfp-box li::before { content: "→ "; color: var(--accent2); }
+
+footer { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.85em; border-top: 1px solid var(--border); margin-top: 40px; }
+
+@media (max-width: 600px) { .topics { grid-template-columns: 1fr; } .hero h1 { font-size: 2em; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>AgentSkills '26</h1>
+  <div class="subtitle">The First Workshop on Agent Skills &mdash; Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents</div>
+  <div class="conf">ACM Conference on AI and Agentic Systems (CAIS '26)</div>
+  <div class="date">May 26, 2026 &bull; San Jose, CA</div>
+  <div class="badges">
+    <span class="badge">Full-day workshop</span>
+    <span class="badge">Peer-reviewed papers</span>
+    <span class="badge">Live skills challenge</span>
+    <span class="badge">Panel discussion</span>
+  </div>
+</div>
+
+<section>
+  <h2><span>&#x1F525;</span>The Pitch</h2>
+  <div class="pitch">
+    <p><strong>Agent Skills</strong> are structured packages of procedural knowledge that augment LLM agents at inference time without model modification. A Skill is a <code>SKILL.md</code> file with instructions plus optional scripts and references &mdash; adopted across Claude Code, Gemini CLI, OpenClaw, Codex, and 30+ agent platforms.</p>
+    <br>
+    <p>Eight focused Skills papers appeared in a single month (Feb&ndash;Mar 2026). An audit of 3,984 Skills found 37% contained security flaws. SkillsBench revealed that curated Skills improve pass rates by 16.2 points on average, yet self-generated Skills can <em>hurt</em> performance in nearly a third of tasks.</p>
+    <br>
+    <p><strong>The field is moving fast and needs a dedicated venue.</strong> AgentSkills '26 brings together researchers and practitioners working on Skills design, benchmarking, optimization, security, and ecosystem infrastructure.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span>&#x1F4CB;</span>Topics</h2>
+  <div class="topics">
+    <div class="topic"><strong>Design & Authoring</strong><p>Principles for effective Skills; structure&ndash;efficacy relationships; domain-specific patterns</p></div>
+    <div class="topic"><strong>Evaluation & Benchmarking</strong><p>Frameworks treating Skills as first-class artifacts; metrics beyond pass rate</p></div>
+    <div class="topic"><strong>Synthesis & Optimization</strong><p>LLM-based generation (GEPA); RL refinement; evolutionary approaches</p></div>
+    <div class="topic"><strong>Composition & Scaling</strong><p>Multi-Skill effects; interference and synergy; optimal selection and retrieval</p></div>
+    <div class="topic"><strong>Domain Applications</strong><p>Healthcare, manufacturing, scientific computing, cybersecurity</p></div>
+    <div class="topic"><strong>Ecosystems & Infrastructure</strong><p>Registries, versioning, distribution; interoperability across harnesses</p></div>
+    <div class="topic"><strong>Security & Supply Chain</strong><p>Malicious Skill detection; formal verification; sandboxing; supply-chain attacks</p></div>
+    <div class="topic"><strong>Continual Learning</strong><p>Feedback-based improvement; trajectory mining for Skill discovery</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span>&#x1F4E2;</span>Call for Papers</h2>
+  <div class="cfp-box">
+    <h3>Submission Tracks</h3>
+    <ul>
+      <li><strong>Full papers:</strong> up to 6 pages + references</li>
+      <li><strong>Short papers / demos:</strong> up to 4 pages + references</li>
+    </ul>
+    <br>
+    <h3>Format</h3>
+    <p>ACM SIGPLAN template. Single-blind review. At least 2 reviews per submission.</p>
+    <p>Submit via <a href="https://cais26workshops.hotcrp.com">HotCRP</a>.</p>
+    <br>
+    <h3>Important Dates</h3>
+    <table>
+      <tr><td><strong>Submission deadline</strong></td><td>April 12, 2026 (AoE)</td></tr>
+      <tr><td><strong>Author notification</strong></td><td>May 5, 2026</td></tr>
+      <tr><td><strong>Camera-ready</strong></td><td>May 16, 2026 (AoE)</td></tr>
+      <tr><td><strong>Workshop day</strong></td><td>May 26, 2026</td></tr>
+    </table>
+    <br>
+    <p style="color: var(--muted); font-size: 0.9em;">We encourage releasing Skills, prompts, evaluation harnesses, or other reusable artifacts alongside submissions.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span>&#x1F4C5;</span>Schedule</h2>
+  <table class="schedule">
+    <tr><td>9:00</td><td>Opening remarks</td></tr>
+    <tr><td>9:15</td><td>Keynote: Foundations of Agent Skills</td></tr>
+    <tr><td>10:00</td><td>Coffee break</td></tr>
+    <tr><td>10:30</td><td>Keynote: Benchmarking Agent Augmentation</td></tr>
+    <tr><td>11:15</td><td>Contributed talks (4 papers)</td></tr>
+    <tr><td>12:00</td><td>Lightning talks</td></tr>
+    <tr><td>12:30</td><td>Lunch + poster setup</td></tr>
+    <tr><td>14:00</td><td>Keynote: Skills Optimization and RL</td></tr>
+    <tr><td>14:45</td><td>Contributed talks (3 papers)</td></tr>
+    <tr><td>15:30</td><td>Poster & demo session</td></tr>
+    <tr><td>16:00</td><td>Live Skills Design Challenge (SkillsBench)</td></tr>
+    <tr><td>16:45</td><td>Panel: Future of Procedural Knowledge for Agents</td></tr>
+    <tr><td>17:15</td><td>Best paper award + closing</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span>&#x1F3A4;</span>Invited Speakers</h2>
+  <div class="people">
+    <div class="person">
+      <div class="name">Dawn Song</div>
+      <div class="aff">UC Berkeley</div>
+    </div>
+    <div class="person">
+      <div class="name">Alex Shaw</div>
+      <div class="aff">Laude (tentative)</div>
+    </div>
+    <div class="person">
+      <div class="name">Manling Li</div>
+      <div class="aff">Northwestern / Amazon (tentative)</div>
+    </div>
+    <div class="person">
+      <div class="name">Qingsong Wen</div>
+      <div class="aff">Squirrel AI (tentative)</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span>&#x1F465;</span>Organizers</h2>
+  <div class="people">
+    <div class="person"><div class="name">Xiangyi Li</div><div class="aff">BenchFlow</div></div>
+    <div class="person"><div class="name">Wenbo Chen</div><div class="aff">Amazon</div></div>
+    <div class="person"><div class="name">Xuandong Zhao</div><div class="aff">UC Berkeley</div></div>
+    <div class="person"><div class="name">Xiaokun Chen</div><div class="aff">Stanford</div></div>
+    <div class="person"><div class="name">Yimin Liu</div><div class="aff">Ohio State</div></div>
+    <div class="person"><div class="name">Shenghan Zheng</div><div class="aff">Dartmouth</div></div>
+    <div class="person"><div class="name">Yifeng He</div><div class="aff">UC Davis</div></div>
+    <div class="person"><div class="name">Hao Chen</div><div class="aff">UC Davis</div></div>
+    <div class="person"><div class="name">Yushun Dong</div><div class="aff">Florida State</div></div>
+    <div class="person"><div class="name">Yan Liu</div><div class="aff">USC</div></div>
+    <div class="person"><div class="name">Han-chung Lee</div><div class="aff">Moody's</div></div>
+    <div class="person"><div class="name">Yue Zhao</div><div class="aff">USC</div></div>
+    <div class="person"><div class="name">Emilio Ferrara</div><div class="aff">USC</div></div>
+    <div class="person"><div class="name">Dawn Song</div><div class="aff">UC Berkeley</div></div>
+  </div>
+</section>
+
+<section>
+  <h2><span>&#x1F4E7;</span>Contact</h2>
+  <p>For questions, email <a href="mailto:xiangyi@benchflow.ai">xiangyi@benchflow.ai</a></p>
+  <p style="margin-top: 10px; color: var(--muted);">Follow updates on the <a href="https://cais26workshops.hotcrp.com/paper/61">CAIS workshop page</a>.</p>
+</section>
+
+<footer>
+  AgentSkills '26 &bull; CAIS Conference &bull; May 26, 2026 &bull; San Jose, CA
+</footer>
+
+</body>
+</html>
