@@ -4,88 +4,111 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AgentSkills '26 — CAIS Workshop</title>
+<meta name="description" content="The First Workshop on Agent Skills at ACM CAIS 2026. Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #FAFAF8;
   --fg: #2C2C2C;
-  --accent: #B8390E;
+  --accent: #B33A0E;
+  --accent-hover: #8F2E0A;
   --link: #1A5276;
-  --muted: #777;
+  --link-hover: #0E3A54;
+  --muted: #6B655E;
   --rule: #D4D0CA;
-  --card-bg: #fff;
+  --card-bg: #FFFFFF;
+  --break-bg: #F4F1EC;
   --serif: 'Crimson Pro', Georgia, serif;
-  --sans: 'Source Sans 3', sans-serif;
+  --sans: 'Source Sans 3', -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 40px;
+  --sp-2xl: 64px;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: var(--sans); background: var(--bg); color: var(--fg); font-size: 16px; line-height: 1.7; }
-a { color: var(--link); text-decoration: none; }
-a:hover { text-decoration: underline; }
 
-.container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-hr { border: none; border-top: 1px solid var(--rule); margin: 48px 0; }
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: var(--sans); background: var(--bg); color: var(--fg); font-size: 16px; line-height: 1.72; }
+
+/* ── Links ── */
+a { color: var(--link); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: var(--link-hover); text-decoration: underline; text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+/* ── Code ── */
+code { font-family: var(--mono); background: #EDEBE6; padding: 2px 6px; border-radius: 3px; font-size: 0.88em; }
+
+/* ── Layout ── */
+.container { max-width: 780px; margin: 0 auto; padding: 0 var(--sp-lg); }
+hr { border: none; border-top: 1px solid var(--rule); margin: var(--sp-xl) 0; }
 
 /* ── Header ── */
-header {
-  border-bottom: 3px solid var(--fg);
-  padding: 60px 0 32px;
-  margin-bottom: 40px;
-}
-header .workshop-label {
+header { border-bottom: 2.5px solid var(--fg); padding: var(--sp-2xl) 0 var(--sp-lg); margin-bottom: var(--sp-xl); }
+.workshop-label {
   font-family: var(--mono);
   font-size: 0.78em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: var(--sp-md);
 }
 header h1 {
   font-family: var(--serif);
-  font-size: 3em;
+  font-size: clamp(2.2em, 5vw, 3.2em);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   color: var(--fg);
-  margin-bottom: 10px;
+  margin-bottom: var(--sp-sm);
 }
-header .long-title {
+.long-title {
   font-family: var(--serif);
-  font-size: 1.15em;
+  font-size: 1.12em;
   font-style: italic;
   color: var(--muted);
-  margin-bottom: 20px;
+  margin-bottom: var(--sp-lg);
+  max-width: 640px;
 }
-header .meta {
+.meta-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px var(--sp-md);
   font-size: 0.92em;
-  color: var(--fg);
-  line-height: 1.8;
+  line-height: 1.7;
 }
-header .meta strong { font-weight: 700; }
+.meta-grid dt { font-weight: 700; color: var(--fg); white-space: nowrap; }
+.meta-grid dd { color: var(--fg); }
 
 nav {
-  margin-top: 20px;
-  padding-top: 16px;
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-md);
   border-top: 1px solid var(--rule);
-  font-size: 0.85em;
   display: flex;
-  gap: 20px;
+  gap: var(--sp-lg);
   flex-wrap: wrap;
+  font-size: 0.84em;
 }
-nav a { color: var(--muted); font-weight: 600; }
-nav a:hover { color: var(--fg); }
+nav a { color: var(--muted); font-weight: 600; text-decoration: none; border-bottom: none; }
+nav a:hover { color: var(--fg); text-decoration: none; }
 
 /* ── Sections ── */
-section { margin-bottom: 48px; }
+section { margin-bottom: 0; }
 h2 {
   font-family: var(--serif);
-  font-size: 1.6em;
+  font-size: 1.55em;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: var(--sp-md);
   color: var(--fg);
+  letter-spacing: -0.005em;
 }
-h3 { font-size: 1em; font-weight: 700; margin-bottom: 8px; color: var(--fg); }
-
-p + p { margin-top: 12px; }
+h3 { font-size: 1em; font-weight: 700; margin-bottom: var(--sp-sm); color: var(--fg); }
+p + p { margin-top: var(--sp-md); }
 
 /* ── Key Numbers ── */
 .key-numbers {
@@ -94,150 +117,160 @@ p + p { margin-top: 12px; }
   gap: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
-  margin: 24px 0;
+  margin: var(--sp-lg) 0 0;
 }
-.key-num {
-  background: var(--card-bg);
-  padding: 18px 16px;
-  text-align: center;
-}
+.key-num { background: var(--card-bg); padding: var(--sp-md); text-align: center; }
 .key-num .n {
   font-family: var(--serif);
-  font-size: 1.8em;
+  font-size: 1.7em;
   font-weight: 700;
   color: var(--accent);
-  line-height: 1;
+  line-height: 1.1;
 }
 .key-num .l {
-  font-size: 0.75em;
+  font-size: 0.72em;
   color: var(--muted);
-  margin-top: 4px;
+  margin-top: var(--sp-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 /* ── Topics ── */
+.topics-intro { margin-bottom: var(--sp-md); }
 .topics-list { list-style: none; }
 .topics-list li {
   padding: 10px 0;
   border-bottom: 1px solid var(--rule);
   display: flex;
-  gap: 12px;
+  gap: var(--sp-md);
+  line-height: 1.6;
 }
-.topics-list li:last-child { border: none; }
+.topics-list li:last-child { border-bottom: none; }
 .topics-list .num {
   font-family: var(--mono);
-  font-size: 0.8em;
+  font-size: 0.78em;
   color: var(--accent);
-  min-width: 24px;
-  padding-top: 2px;
+  min-width: 22px;
+  padding-top: 3px;
+  flex-shrink: 0;
 }
 .topics-list .topic-title { font-weight: 700; }
-.topics-list .topic-desc { color: var(--muted); font-size: 0.92em; }
+.topics-list .topic-desc { color: var(--muted); }
 
-/* ── Dates table ── */
-.dates-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-  font-size: 0.95em;
+/* ── Call for Papers ── */
+.cfp-tracks { margin: var(--sp-md) 0; padding-left: 20px; font-size: 0.95em; line-height: 1.8; }
+.cfp-tracks li + li { margin-top: var(--sp-xs); }
+
+.dates-table { width: 100%; border-collapse: collapse; margin: var(--sp-lg) 0; font-size: 0.94em; }
+.dates-table td { padding: var(--sp-sm) 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+.dates-table td:first-child { font-weight: 600; width: 190px; color: var(--fg); }
+.dates-table tr:last-child td { border-bottom: none; }
+
+.submit-box {
+  border: 2px solid var(--fg);
+  padding: var(--sp-lg);
+  margin-top: var(--sp-lg);
+  background: var(--card-bg);
 }
-.dates-table td {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--rule);
+.submit-box h3 { font-family: var(--serif); font-size: 1.15em; margin-bottom: var(--sp-sm); }
+.submit-box p { font-size: 0.92em; color: var(--muted); }
+.submit-btn {
+  display: inline-block;
+  margin-top: var(--sp-md);
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.86em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
 }
-.dates-table td:first-child { font-weight: 600; width: 200px; }
-.dates-table td:last-child { color: var(--muted); }
-.dates-table tr:last-child td { border: none; }
+.submit-btn:hover { background: var(--accent-hover); text-decoration: none; color: #fff; }
+.submit-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.submit-btn:active { transform: translateY(1px); }
 
 /* ── Schedule ── */
-.schedule-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.92em;
-}
+.schedule-table { width: 100%; border-collapse: collapse; font-size: 0.92em; }
 .schedule-table td {
-  padding: 8px 0;
+  padding: 9px 0;
   border-bottom: 1px solid var(--rule);
-  vertical-align: top;
+  vertical-align: baseline;
 }
 .schedule-table td:first-child {
   font-family: var(--mono);
-  font-size: 0.85em;
+  font-size: 0.84em;
   color: var(--accent);
-  width: 60px;
-  padding-top: 10px;
+  width: 64px;
+  padding-top: 11px;
 }
 .schedule-table .event { font-weight: 600; }
 .schedule-table .detail { color: var(--muted); font-size: 0.9em; }
-.schedule-table .break td { background: #F5F3EE; }
+.schedule-table .break td { background: var(--break-bg); padding-left: 0; padding-right: 0; }
+
+/* ── Speakers ── */
+.speaker-block {
+  padding: var(--sp-md) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.speaker-block:last-child { border-bottom: none; }
+.sname { font-weight: 700; font-size: 1.04em; }
+.saff { color: var(--muted); font-size: 0.9em; margin-top: 1px; }
+.stag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.7em;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: var(--sp-xs);
+}
 
 /* ── People ── */
 .people-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 6px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: var(--sp-xs) var(--sp-lg);
   font-size: 0.92em;
 }
-.people-list .person { padding: 6px 0; }
-.people-list .pname { font-weight: 700; }
-.people-list .paff { color: var(--muted); font-size: 0.88em; }
-
-.speaker-block {
-  display: flex;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--rule);
-  align-items: flex-start;
-}
-.speaker-block:last-child { border: none; }
-.speaker-block .sname { font-weight: 700; font-size: 1.05em; }
-.speaker-block .saff { color: var(--muted); font-size: 0.9em; }
-.speaker-block .stag {
-  font-family: var(--mono);
-  font-size: 0.72em;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* ── Submission Box ── */
-.submit-box {
-  border: 2px solid var(--fg);
-  padding: 24px;
-  margin: 20px 0;
-  background: var(--card-bg);
-}
-.submit-box h3 { font-family: var(--serif); font-size: 1.2em; margin-bottom: 10px; }
-.submit-box p { font-size: 0.92em; }
-.submit-box .submit-btn {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 10px 24px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.88em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: none;
-}
-.submit-box .submit-btn:hover { background: #961F08; text-decoration: none; }
+.person { padding: var(--sp-sm) 0; }
+.pname { font-weight: 700; line-height: 1.3; }
+.paff { color: var(--muted); font-size: 0.86em; line-height: 1.3; }
 
 /* ── Footer ── */
 footer {
-  border-top: 3px solid var(--fg);
-  padding: 24px 0;
-  margin-top: 48px;
+  border-top: 2.5px solid var(--fg);
+  padding: var(--sp-lg) 0;
+  margin-top: var(--sp-xl);
   font-size: 0.82em;
   color: var(--muted);
   text-align: center;
 }
 
-@media (max-width: 600px) {
-  header h1 { font-size: 2em; }
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .meta-grid { grid-template-columns: 1fr; gap: 0; }
+  .meta-grid dt { display: inline; }
+  .meta-grid dt::after { content: ' '; }
+  .meta-grid dd { display: inline; margin-bottom: var(--sp-xs); }
   .key-numbers { grid-template-columns: repeat(2, 1fr); }
-  .people-list { grid-template-columns: 1fr 1fr; }
+  .people-list { grid-template-columns: 1fr 1fr; gap: var(--sp-xs) var(--sp-md); }
+  nav { gap: var(--sp-md); }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 var(--sp-md); }
+  header { padding-top: var(--sp-xl); }
+  .people-list { grid-template-columns: 1fr; }
+  .dates-table td:first-child { width: auto; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 </style>
 </head>
@@ -248,14 +281,14 @@ footer {
 <header>
   <div class="workshop-label">CAIS '26 Workshop &middot; May 26, 2026 &middot; San Jose, CA</div>
   <h1>AgentSkills '26</h1>
-  <div class="long-title">The First Workshop on Agent Skills &mdash; Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents</div>
-  <div class="meta">
-    <strong>Conference:</strong> ACM Conference on AI and Agentic Systems (CAIS '26)<br>
-    <strong>Date:</strong> May 26, 2026 (full day)<br>
-    <strong>Location:</strong> San Jose Convention Center, San Jose, CA<br>
-    <strong>Submission deadline:</strong> April 12, 2026 (AoE)
-  </div>
-  <nav>
+  <div class="long-title">The First Workshop on Agent Skills&mdash;Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents</div>
+  <dl class="meta-grid">
+    <dt>Conference</dt><dd>ACM Conference on AI and Agentic Systems (CAIS '26)</dd>
+    <dt>Date</dt><dd>May 26, 2026 (full day)</dd>
+    <dt>Location</dt><dd>San Jose Convention Center, San Jose, CA</dd>
+    <dt>Submission deadline</dt><dd>April 12, 2026 (AoE)</dd>
+  </dl>
+  <nav aria-label="Page sections">
     <a href="#overview">Overview</a>
     <a href="#topics">Topics</a>
     <a href="#cfp">Call for Papers</a>
@@ -268,15 +301,14 @@ footer {
 
 <section id="overview">
   <h2>Overview</h2>
-  <p><strong>Agent Skills</strong> are structured packages of procedural knowledge that augment LLM agents at inference time without model modification. A Skill is a <code style="font-family: var(--mono); background: #EEEAE4; padding: 1px 5px; font-size: 0.9em;">SKILL.md</code> file with instructions plus optional scripts and references&mdash;adopted across Claude Code, Gemini CLI, OpenClaw, Codex, and 30+ agent platforms.</p>
+  <p><strong>Agent Skills</strong> are structured packages of procedural knowledge that augment LLM agents at inference time without model modification. A Skill is a <code>SKILL.md</code> file with instructions plus optional scripts and references&mdash;adopted across Claude Code, Gemini CLI, OpenClaw, Codex, and 30+ agent platforms.</p>
   <p>Eight focused Skills papers appeared in a single month (Feb&ndash;Mar 2026). An audit of 3,984 Skills found 37% contained security flaws. SkillsBench revealed that curated Skills improve pass rates by 16.2 points on average, yet self-generated Skills can <em>hurt</em> performance in nearly a third of tasks.</p>
   <p><strong>The field is moving fast and needs a dedicated venue.</strong> AgentSkills '26 brings together researchers and practitioners working on Skills design, benchmarking, optimization, security, and ecosystem infrastructure.</p>
-
-  <div class="key-numbers">
-    <div class="key-num"><div class="n">30+</div><div class="l">Agent Platforms</div></div>
-    <div class="key-num"><div class="n">3,984</div><div class="l">Skills Audited</div></div>
-    <div class="key-num"><div class="n">+16.2</div><div class="l">Avg Score Gain</div></div>
-    <div class="key-num"><div class="n">37%</div><div class="l">Security Flaws</div></div>
+  <div class="key-numbers" role="list" aria-label="Key statistics">
+    <div class="key-num" role="listitem"><div class="n">30+</div><div class="l">Agent Platforms</div></div>
+    <div class="key-num" role="listitem"><div class="n">3,984</div><div class="l">Skills Audited</div></div>
+    <div class="key-num" role="listitem"><div class="n">+16.2</div><div class="l">Avg Score Gain</div></div>
+    <div class="key-num" role="listitem"><div class="n">37%</div><div class="l">Security Flaws</div></div>
   </div>
 </section>
 
@@ -284,7 +316,7 @@ footer {
 
 <section id="topics">
   <h2>Topics of Interest</h2>
-  <p>We invite contributions across the full lifecycle of Agent Skills, including but not limited to:</p>
+  <p class="topics-intro">We invite contributions across the full lifecycle of Agent Skills, including but not limited to:</p>
   <ul class="topics-list">
     <li><span class="num">1</span><div><span class="topic-title">Design &amp; Authoring.</span> <span class="topic-desc">Principles for effective Skills; structure&ndash;efficacy relationships; domain-specific patterns; failure mode analysis.</span></div></li>
     <li><span class="num">2</span><div><span class="topic-title">Evaluation &amp; Benchmarking.</span> <span class="topic-desc">Frameworks treating Skills as first-class artifacts; metrics beyond pass rate (cost, token efficiency, reliability).</span></div></li>
@@ -302,13 +334,13 @@ footer {
 <section id="cfp">
   <h2>Call for Papers</h2>
   <p>We accept two tracks:</p>
-  <ul style="margin: 10px 0 10px 20px; font-size: 0.95em;">
-    <li><strong>Full papers</strong> &mdash; up to 6 pages + references</li>
-    <li><strong>Short papers / demos</strong> &mdash; up to 4 pages + references</li>
+  <ul class="cfp-tracks">
+    <li><strong>Full papers</strong>&mdash;up to 6 pages + references</li>
+    <li><strong>Short papers / demos</strong>&mdash;up to 4 pages + references</li>
   </ul>
   <p>Submissions must follow the ACM SIGPLAN template and will be reviewed single-blind with at least two reviews. We encourage releasing Skills, prompts, evaluation harnesses, or other reusable artifacts alongside submissions.</p>
 
-  <table class="dates-table">
+  <table class="dates-table" role="table">
     <tr><td>Submission deadline</td><td>April 12, 2026 (AoE)</td></tr>
     <tr><td>Author notification</td><td>May 5, 2026</td></tr>
     <tr><td>Camera-ready deadline</td><td>May 16, 2026 (AoE)</td></tr>
@@ -318,7 +350,7 @@ footer {
   <div class="submit-box">
     <h3>Submit Your Work</h3>
     <p>We expect 30&ndash;50 submissions and plan to accept 8&ndash;12 papers. At least one author of each accepted paper must register, attend, and present.</p>
-    <a href="https://cais26workshops.hotcrp.com" class="submit-btn">Submit via HotCRP &rarr;</a>
+    <a href="https://cais26workshops.hotcrp.com" class="submit-btn" role="button">Submit via HotCRP &rarr;</a>
   </div>
 </section>
 
@@ -326,7 +358,7 @@ footer {
 
 <section id="schedule">
   <h2>Tentative Schedule</h2>
-  <table class="schedule-table">
+  <table class="schedule-table" role="table">
     <tr><td>9:00</td><td><span class="event">Opening Remarks</span></td></tr>
     <tr><td>9:15</td><td><span class="event">Keynote: Foundations of Agent Skills</span></td></tr>
     <tr class="break"><td>10:00</td><td><span class="event">Coffee Break</span></td></tr>
@@ -348,10 +380,14 @@ footer {
 <section id="speakers">
   <h2>Invited Speakers</h2>
   <div class="speaker-block">
-    <div><div class="sname">Dawn Song</div><div class="saff">UC Berkeley</div><div class="stag">Confirmed</div></div>
+    <div class="sname">Dawn Song</div>
+    <div class="saff">UC Berkeley</div>
+    <div class="stag">Confirmed</div>
   </div>
   <div class="speaker-block">
-    <div><div class="sname">Manling Li</div><div class="saff">Northwestern University / Amazon Scholar</div><div class="stag">Tentative</div></div>
+    <div class="sname">Manling Li</div>
+    <div class="saff">Northwestern University / Amazon Scholar</div>
+    <div class="stag">Tentative</div>
   </div>
 </section>
 
