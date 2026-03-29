@@ -39,14 +39,18 @@ code { background: rgba(184,89,62,0.06); padding: 2px 5px; border-radius: 3px; f
   position: relative;
   background: url('hero-bg.png') center/cover no-repeat;
   color: var(--eerie-black);
-  padding: 5rem 0 4rem;
+  padding: 5rem 0 4.5rem;
+  text-align: center;
 }
-.hero h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.02em; }
-.hero .subtitle { font-size: 1.1rem; color: var(--davys-gray); max-width: 620px; margin-top: 0.5rem; }
+.hero h1 { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.02em; }
+.hero .subtitle { font-size: 1.1rem; color: var(--davys-gray); max-width: 640px; margin: 0.5rem auto 0; }
 .hero .info { font-size: 0.95rem; margin-top: 1.5rem; }
+.hero .cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.btn-outline-cais { border: 2px solid var(--eerie-black); color: var(--eerie-black); font-weight: 600; font-size: 0.88rem; padding: 0.5rem 1.5rem; background: transparent; transition: all 200ms; }
+.btn-outline-cais:hover { background: var(--eerie-black); color: var(--seasalt); }
 
 /* Sections */
-section { padding: 3.5rem 0; border-bottom: 1px solid var(--platinum); }
+section { padding: 4rem 0; border-bottom: 1px solid var(--platinum); }
 section:last-of-type { border-bottom: none; }
 h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 
@@ -129,7 +133,11 @@ footer a { color: var(--terracotta-light); }
     <div class="subtitle">The First Workshop on Agent Skills &mdash; Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents</div>
     <div class="info">
       <img src="ACM_CAIS_Logo.svg" alt="ACM CAIS" height="24" class="me-2" style="vertical-align:middle;">
-      May 26, 2026 &middot; San Jose, CA &middot; Full day &middot; <a href="#cfp">Submissions due Apr 12</a>
+      May 26, 2026 &middot; San Jose, CA &middot; Full day
+    </div>
+    <div class="cta">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJmpJ14iFSUENH7-wzZgtmtsaoiJk1oEF8r4HN3BnEEHYzjA/viewform" class="btn btn-cais" target="_blank">Subscribe for Updates</a>
+      <a href="#cfp" class="btn btn-outline-cais">Call for Papers</a>
     </div>
   </div>
 </div>
