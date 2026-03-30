@@ -22,7 +22,7 @@ Infer these from the user's message. Only ask if genuinely ambiguous.
 
 | Parameter | Options | How to infer |
 |---|---|---|
-| `platform` | `twitter`, `xiaohongshu` | "X post"/"twitter" → twitter; "rednote"/"小红书" → xiaohongshu |
+| `platform` | `twitter`, `xiaohongshu`, `formal` | "X post"/"twitter" → twitter; "rednote"/"小红书" → xiaohongshu; "formal"/"professor"/"linkedin" → formal |
 | `language` | `en`, `zh` | twitter defaults to `en`; xiaohongshu defaults to `zh`; user can override |
 | `content_type` | `paper`, `cfp` | "CFP"/"call for papers"/"征稿" → cfp; otherwise → paper |
 
