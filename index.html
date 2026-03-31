@@ -81,11 +81,11 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 .sched .detail { color: var(--davys-gray); }
 .sched .break { background: rgba(138,158,120,0.08); border-radius: 4px; padding: 0.5rem 0.75rem; margin: 2px -0.75rem; }
 
-/* Speakers + Organizers — tighter spacing */
-#speakers { padding-bottom: 2rem; }
-#organizers { padding-top: 2rem; }
+/* Speakers + Organizers — aligned spacing */
+#speakers { padding-bottom: 2.5rem; }
+#organizers { padding-top: 2.5rem; }
 
-/* Speaker cards */
+/* Speaker cards — use same grid as organizers */
 .speaker-card { display: flex; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--platinum); }
 .speaker-card:last-child { border: none; }
 .speaker-card img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; background: var(--platinum); }
@@ -99,6 +99,7 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 .person img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 0.4rem; background: var(--platinum); }
 .person .name { font-weight: 600; font-size: 0.9rem; line-height: 1.3; }
 .person .aff { color: var(--davys-gray); font-size: 0.8rem; }
+.person .tag { color: var(--terracotta-deep); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 
 /* Footer — matches CAIS */
 footer { background: var(--eerie-black); color: var(--silver); padding: 2rem 0; font-size: 0.85rem; }
@@ -218,17 +219,10 @@ footer a { color: var(--terracotta-light); }
 
 <section id="speakers">
   <h2>Invited Speakers</h2>
-  <div class="speaker-card">
-    <img src="photos/dawnsong.jpg" alt="Dawn Song">
-    <div><div class="name">Dawn Song</div><div class="aff">UC Berkeley</div><div class="tag">Confirmed</div></div>
-
-    <img src="photos/manling.jpg" alt="Manling Li">
-    <div><div class="name">Manling Li</div><div class="aff">Northwestern University</div><div class="tag">Confirmed</div></div>
+  <div class="people">
+    <div class="person"><img src="photos/dawnsong.jpg" alt="Dawn Song"><div class="name">Dawn Song</div><div class="aff">UC Berkeley</div><div class="tag">Confirmed</div></div>
+    <div class="person"><img src="photos/manling.jpg" alt="Manling Li"><div class="name">Manling Li</div><div class="aff">Northwestern University</div><div class="tag">Confirmed</div></div>
   </div>
-  <!-- <div class="speaker-card">
-    <img src="photos/manling.jpg" alt="Manling Li">
-    <div><div class="name">Manling Li</div><div class="aff">Northwestern University</div><div class="tag">Confirmed</div></div>
-  </div> -->
 </section>
 
 <section id="organizers">
