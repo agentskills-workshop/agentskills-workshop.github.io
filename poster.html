@@ -5,284 +5,199 @@
   <title>Agent Skills '26 — Workshop Poster</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: #d6d3d1;
-      display: flex; justify-content: center; align-items: center;
-      min-height: 100vh; padding: 20px;
+    body { font-family: 'Inter', sans-serif; background: #d6d3d1; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+    .p {
+      width: 1080px; height: 1080px; background: #fafaf9;
+      padding: 32px 38px 28px; display: flex; flex-direction: column;
     }
 
-    .poster {
-      width: 1080px; height: 1080px;
-      background: #fafaf9;
-      padding: 28px 36px 24px;
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-    }
+    /* HEADER */
+    .hdr { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4px; }
+    .hdr h1 { font-family: 'Source Serif 4', serif; font-size: 56px; font-weight: 700; color: #1c1917; letter-spacing: -1.5px; line-height: 1; }
+    .hdr-sub { font-size: 13.5px; color: #57534e; margin-top: 5px; max-width: 580px; line-height: 1.4; }
+    .hdr-r { text-align: right; }
+    .hdr-v { font-size: 9px; font-weight: 700; color: #B76E48; text-transform: uppercase; letter-spacing: 1px; }
+    .hdr-d { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #1c1917; margin-top: 2px; }
+    .hdr-l { font-size: 12px; color: #78716c; }
+    .hdr-u { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #B76E48; margin-top: 4px; }
+    .bar { height: 2.5px; background: linear-gradient(90deg, #B76E48, #8A9E78, #B76E48); opacity: 0.5; margin: 6px 0 8px; border-radius: 1px; }
 
-    /* ── HEADER ── */
-    .hdr {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 6px;
-    }
-    .hdr h1 {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 52px; font-weight: 700; color: #1c1917;
-      letter-spacing: -1.5px; line-height: 1;
-    }
-    .hdr-sub {
-      font-size: 13px; color: #57534e; margin-top: 6px;
-      max-width: 560px; line-height: 1.45;
-    }
-    .hdr-right { text-align: right; flex-shrink: 0; }
-    .hdr-venue {
-      font-size: 10px; font-weight: 700; color: #B76E48;
-      text-transform: uppercase; letter-spacing: 0.8px;
-    }
-    .hdr-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 20px; font-weight: 600; color: #1c1917; margin-top: 2px;
-    }
-    .hdr-loc { font-size: 12px; color: #78716c; margin-top: 1px; }
-    .hdr-url {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; color: #B76E48; margin-top: 6px;
-    }
+    /* SECTION LABELS */
+    .sl { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #a8a29e; margin-bottom: 5px; }
 
-    /* ── DIVIDER ── */
-    .div-line {
-      height: 2px; border-radius: 1px; margin: 8px 0 10px;
-      background: linear-gradient(90deg, #B76E48, #8A9E78, #B76E48);
-      opacity: 0.5;
-    }
+    /* TOPICS — 2x2 grid, tight */
+    .tg { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
+    .tc { background: #fff; border: 1px solid #e7e5e4; border-radius: 8px; padding: 10px 12px; }
+    .tc-n { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; color: #B76E48; }
+    .tc-t { font-size: 12px; font-weight: 700; color: #1c1917; line-height: 1.25; margin-top: 1px; }
+    .tc-d { font-size: 9px; color: #78716c; line-height: 1.35; margin-top: 2px; }
 
-    /* ── TOPICS ── */
-    .sec-label {
-      font-size: 9px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.2px; color: #a8a29e; margin-bottom: 6px;
-    }
-    .topics {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 6px; margin-bottom: 10px;
-    }
-    .topic {
-      background: #fff; border: 1px solid #e7e5e4; border-radius: 7px;
-      padding: 8px 10px;
-    }
-    .topic-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8px; font-weight: 600; color: #B76E48;
-    }
-    .topic-title { font-size: 10.5px; font-weight: 700; color: #1c1917; line-height: 1.3; }
-    .topic-desc { font-size: 8px; color: #78716c; line-height: 1.35; margin-top: 1px; }
+    /* DATES — single row */
+    .dr { display: flex; gap: 5px; margin-bottom: 8px; }
+    .dc { flex: 1; background: #1c1917; color: #fafaf9; border-radius: 7px; padding: 9px 8px; text-align: center; }
+    .dc.a { background: #B76E48; }
+    .dc .dl { font-size: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #a8a29e; }
+    .dc.a .dl { color: rgba(255,255,255,0.7); }
+    .dc .dv { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; margin-top: 1px; }
 
-    /* ── DATES ── */
-    .dates-row {
-      display: flex; gap: 6px; margin-bottom: 12px;
-    }
-    .date-card {
-      flex: 1; background: #1c1917; color: #fafaf9;
-      border-radius: 7px; padding: 8px 10px; text-align: center;
-    }
-    .date-card .d-label {
-      font-size: 8px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.5px; color: #a8a29e;
-    }
-    .date-card .d-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px; font-weight: 600; margin-top: 1px;
-    }
-    .date-card.accent { background: #B76E48; }
-    .date-card.accent .d-label { color: rgba(255,255,255,0.7); }
-
-    /* ── MIDDLE ROW: speakers + info ── */
-    .mid-row {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 10px; margin-bottom: 12px;
-    }
-    .panel {
-      background: #fff; border: 1px solid #e7e5e4; border-radius: 8px;
-      padding: 12px 14px;
-    }
+    /* MIDDLE — speakers + details side by side */
+    .mid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+    .pn { background: #fff; border: 1px solid #e7e5e4; border-radius: 8px; padding: 12px 14px; }
 
     /* Speakers */
-    .speaker-grid {
-      display: flex; flex-wrap: wrap; gap: 10px;
-    }
-    .spk {
-      display: flex; align-items: center; gap: 8px;
-      width: calc(50% - 5px);
-    }
-    .spk img {
-      width: 36px; height: 36px; border-radius: 50%;
-      object-fit: cover; background: #e7e5e4; flex-shrink: 0;
-    }
-    .spk-name { font-size: 11px; font-weight: 600; color: #1c1917; }
-    .spk-aff { font-size: 9px; color: #78716c; }
-    .spk-tag { font-size: 7.5px; font-weight: 700; text-transform: uppercase; color: #B76E48; letter-spacing: 0.3px; }
-    .more-tba {
-      font-size: 10px; color: #a8a29e; font-style: italic; margin-top: 6px;
-    }
+    .sg { display: flex; flex-wrap: wrap; gap: 8px; }
+    .sk { display: flex; align-items: center; gap: 8px; width: calc(50% - 4px); }
+    .sk img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: #e7e5e4; }
+    .sk-n { font-size: 12px; font-weight: 600; color: #1c1917; }
+    .sk-a { font-size: 9px; color: #78716c; }
+    .sk-t { font-size: 7px; font-weight: 700; text-transform: uppercase; color: #B76E48; letter-spacing: 0.3px; }
+    .tba { font-size: 10px; color: #a8a29e; font-style: italic; margin-top: 6px; }
 
-    /* Info */
-    .info-item {
-      display: flex; gap: 6px; padding: 4px 0;
-      border-bottom: 1px solid #f5f5f4; align-items: baseline;
-    }
-    .info-item:last-child { border-bottom: none; }
-    .info-key {
-      font-size: 8px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.3px; color: #a8a29e; min-width: 80px;
-    }
-    .info-val { font-size: 10.5px; color: #1c1917; font-weight: 500; }
-    .info-val a { color: #B76E48; text-decoration: none; }
+    /* Submission details */
+    .ii { display: flex; gap: 6px; padding: 3.5px 0; border-bottom: 1px solid #f5f5f4; align-items: baseline; }
+    .ii:last-child { border-bottom: none; }
+    .ik { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #a8a29e; min-width: 72px; }
+    .iv { font-size: 10.5px; color: #1c1917; font-weight: 500; }
+    .iv a { color: #B76E48; text-decoration: none; }
+    .cta { margin-top: 6px; background: #1c1917; border-radius: 6px; padding: 10px; text-align: center; }
+    .cta-t { font-size: 10px; font-weight: 600; color: #fafaf9; }
+    .cta-u { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: #B76E48; margin-top: 1px; }
 
-    .cta-box {
-      margin-top: 8px; background: #1c1917; border-radius: 6px;
-      padding: 10px 12px; text-align: center;
-    }
-    .cta-text { font-size: 10px; font-weight: 600; color: #fafaf9; }
-    .cta-url {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; font-weight: 600; color: #B76E48; margin-top: 2px;
-    }
+    /* ORGANIZERS — 8-col grid */
+    .og { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px 2px; }
+    .o { text-align: center; }
+    .o img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 3px; background: #e7e5e4; }
+    .o-n { font-size: 9px; font-weight: 600; color: #1c1917; line-height: 1.2; }
+    .o-a { font-size: 7px; color: #78716c; }
 
-    /* ── ORGANIZERS ── */
-    .org-section { margin-bottom: 0; flex: 1; }
-    .org-grid {
-      display: grid; grid-template-columns: repeat(8, 1fr);
-      gap: 6px;
-    }
-    .org {
-      text-align: center;
-    }
-    .org img {
-      width: 48px; height: 48px; border-radius: 50%;
-      object-fit: cover; display: block; margin: 0 auto 3px;
-      background: #e7e5e4;
-    }
-    .org-name { font-size: 8.5px; font-weight: 600; color: #1c1917; line-height: 1.2; }
-    .org-aff { font-size: 7px; color: #78716c; }
-
-    /* ── FOOTER ── */
-    .footer {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 8px; padding-top: 6px;
-      border-top: 1px solid #e7e5e4;
-    }
-    .footer-left { font-size: 9px; color: #a8a29e; }
-    .footer-right { display: flex; gap: 8px; }
-    .footer-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8px; font-weight: 600; color: #78716c;
-      background: #f5f5f4; padding: 2px 6px; border-radius: 3px;
-    }
+    /* FOOTER */
+    .ft { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 6px; border-top: 1px solid #e7e5e4; }
+    .ft-l { font-size: 8px; color: #a8a29e; }
+    .ft-r { display: flex; gap: 6px; }
+    .ft-t { font-family: 'JetBrains Mono', monospace; font-size: 7.5px; font-weight: 600; color: #78716c; background: #f5f5f4; padding: 2px 5px; border-radius: 3px; }
   </style>
 </head>
 <body>
+<div class="p">
 
-<div class="poster">
-
-  <!-- HEADER -->
   <div class="hdr">
     <div>
       <h1>Agent Skills '26</h1>
       <div class="hdr-sub">The First Workshop on Agent Skills &mdash; Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents</div>
     </div>
-    <div class="hdr-right">
-      <div class="hdr-venue">ACM Conference on AI &amp; Agentic Systems</div>
-      <div class="hdr-date">May 26, 2026</div>
-      <div class="hdr-loc">San Jose, CA &middot; Full day</div>
-      <div class="hdr-url">agentskills-workshop.github.io</div>
+    <div class="hdr-r">
+      <div class="hdr-v">ACM Conference on AI &amp; Agentic Systems</div>
+      <div class="hdr-d">May 26, 2026</div>
+      <div class="hdr-l">San Jose, CA &middot; Full day</div>
+      <div class="hdr-u">agentskills-workshop.github.io</div>
+    </div>
+  </div>
+  <div class="bar"></div>
+
+  <div class="sl">Topics of Interest</div>
+  <div class="tg">
+    <div class="tc"><div class="tc-n">01</div><div class="tc-t">Agent Skills &amp; Applications</div><div class="tc-d">Skills for agent harnesses (OpenClaw, NanoClaw, MetaClaw, Pi); design &amp; authoring; domain patterns; composition &amp; scaling</div></div>
+    <div class="tc"><div class="tc-n">02</div><div class="tc-t">Evaluation &amp; Benchmarking</div><div class="tc-d">Skills as first-class artifacts; metrics beyond pass rate; benchmark design; Skill impact measurement</div></div>
+    <div class="tc"><div class="tc-n">03</div><div class="tc-t">Safety &amp; Supply Chain</div><div class="tc-d">Malicious Skill detection; formal verification; prompt injection via Skills; ecosystem security</div></div>
+    <div class="tc"><div class="tc-n">04</div><div class="tc-t">Improvement &amp; Learning</div><div class="tc-d">LLM-based Skill generation; RL refinement; evolutionary approaches; trajectory mining; continual learning</div></div>
+  </div>
+
+  <div class="dr">
+    <div class="dc a"><div class="dl">Submission Deadline</div><div class="dv">April 12, 2026</div></div>
+    <div class="dc"><div class="dl">Notification</div><div class="dv">May 5, 2026</div></div>
+    <div class="dc"><div class="dl">Camera-Ready</div><div class="dv">May 16, 2026</div></div>
+    <div class="dc a"><div class="dl">Workshop Day</div><div class="dv">May 26, 2026</div></div>
+  </div>
+
+  <div class="mid">
+    <div class="pn">
+      <div class="sl">Invited Speakers</div>
+      <div class="sg">
+        <div class="sk"><img src="photos/dawnsong.jpg" alt="Dawn Song"><div><div class="sk-n">Dawn Song</div><div class="sk-a">UC Berkeley</div><div class="sk-t">Confirmed</div></div></div>
+        <div class="sk"><img src="photos/manling.jpg" alt="Manling Li"><div><div class="sk-n">Manling Li</div><div class="sk-a">Northwestern University</div><div class="sk-t">Confirmed</div></div></div>
+      </div>
+      <div class="tba">More speakers to be announced</div>
+    </div>
+    <div class="pn">
+      <div class="sl">Submission Details</div>
+      <div class="ii"><span class="ik">Format</span><span class="iv">Full papers (9p) &amp; Short papers (4p)</span></div>
+      <div class="ii"><span class="ik">Template</span><span class="iv">ACM SIGPLAN proceedings (double-blind)</span></div>
+      <div class="ii"><span class="ik">Expected</span><span class="iv">30&ndash;50 submissions; 8&ndash;12 accepted</span></div>
+      <div class="ii"><span class="ik">Artifacts</span><span class="iv">Code, Skills, datasets encouraged</span></div>
+      <div class="ii"><span class="ik">Contact</span><span class="iv"><a href="mailto:xiangyi@benchflow.ai">xiangyi@benchflow.ai</a></span></div>
+      <div class="cta"><div class="cta-t">Subscribe for Updates &amp; Submit Papers</div><div class="cta-u">agentskills-workshop.github.io</div></div>
     </div>
   </div>
 
-  <div class="div-line"></div>
-
-  <!-- TOPICS -->
-  <div class="sec-label">Topics of Interest</div>
-  <div class="topics">
-    <div class="topic"><div class="topic-num">01</div><div class="topic-title">Agent Skills &amp; Applications</div><div class="topic-desc">Skills for agent harnesses (OpenClaw, NanoClaw, MetaClaw, Pi); design &amp; authoring; domain-specific patterns; composition &amp; scaling</div></div>
-    <div class="topic"><div class="topic-num">02</div><div class="topic-title">Evaluation &amp; Benchmarking</div><div class="topic-desc">Skills as first-class artifacts; metrics beyond pass rate; benchmark design; Skill impact measurement</div></div>
-    <div class="topic"><div class="topic-num">03</div><div class="topic-title">Safety &amp; Supply Chain</div><div class="topic-desc">Malicious Skill detection; formal verification; prompt injection via Skills; ecosystem security</div></div>
-    <div class="topic"><div class="topic-num">04</div><div class="topic-title">Improvement &amp; Learning</div><div class="topic-desc">LLM-based Skill generation; RL refinement; evolutionary approaches; trajectory mining; continual learning</div></div>
-  </div>
-
-  <!-- DATES -->
-  <div class="dates-row">
-    <div class="date-card accent"><div class="d-label">Submission Deadline</div><div class="d-val">April 12, 2026</div></div>
-    <div class="date-card"><div class="d-label">Notification</div><div class="d-val">May 5, 2026</div></div>
-    <div class="date-card"><div class="d-label">Camera-Ready</div><div class="d-val">May 16, 2026</div></div>
-    <div class="date-card accent"><div class="d-label">Workshop Day</div><div class="d-val">May 26, 2026</div></div>
-  </div>
-
-  <!-- SPEAKERS + INFO -->
-  <div class="mid-row">
-    <div class="panel">
-      <div class="sec-label">Invited Speakers</div>
-      <div class="speaker-grid">
-        <div class="spk">
-          <img src="photos/dawnsong.jpg" alt="Dawn Song">
-          <div><div class="spk-name">Dawn Song</div><div class="spk-aff">UC Berkeley</div><div class="spk-tag">Confirmed</div></div>
+  <!-- SCHEDULE + HIGHLIGHTS -->
+  <div class="mid">
+    <div class="pn">
+      <div class="sl">Tentative Schedule</div>
+      <div class="ii"><span class="ik">9:00</span><span class="iv" style="font-weight:600">Opening Remarks</span></div>
+      <div class="ii"><span class="ik">9:15</span><span class="iv" style="font-weight:600">Keynote: Foundations of Agent Skills</span></div>
+      <div class="ii"><span class="ik">10:30</span><span class="iv" style="font-weight:600">Keynote: Benchmarking Agent Augmentation</span></div>
+      <div class="ii"><span class="ik">11:15</span><span class="iv">Contributed Talks (4 papers)</span></div>
+      <div class="ii"><span class="ik">14:00</span><span class="iv" style="font-weight:600">Keynote: Skills Optimization and RL</span></div>
+      <div class="ii"><span class="ik">15:30</span><span class="iv">Poster &amp; Demo Session</span></div>
+      <div class="ii"><span class="ik">16:00</span><span class="iv" style="font-weight:600">Live SkillsBench Design Challenge</span></div>
+      <div class="ii"><span class="ik">17:15</span><span class="iv">Best Paper Award &amp; Closing</span></div>
+    </div>
+    <div class="pn" style="display:flex;flex-direction:column;gap:8px;">
+      <div class="sl">Why Agent Skills?</div>
+      <div style="font-size:10px;color:#57534e;line-height:1.5;">LLM agents increasingly rely on <strong>modular procedural knowledge</strong> &mdash; structured <code style="font-size:9px;background:#f5f5f4;padding:1px 4px;border-radius:3px;">SKILL.md</code> files that augment capabilities at inference time without fine-tuning.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div style="background:#f5f5f4;border-radius:6px;padding:8px 10px;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:#B76E48;">90K+</div>
+          <div style="font-size:8px;color:#78716c;">Skills on skills.sh</div>
         </div>
-        <div class="spk">
-          <img src="photos/manling.jpg" alt="Manling Li">
-          <div><div class="spk-name">Manling Li</div><div class="spk-aff">Northwestern University</div><div class="spk-tag">Confirmed</div></div>
+        <div style="background:#f5f5f4;border-radius:6px;padding:8px 10px;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:#B76E48;">+16.2pp</div>
+          <div style="font-size:8px;color:#78716c;">Pass rate with curated Skills</div>
+        </div>
+        <div style="background:#f5f5f4;border-radius:6px;padding:8px 10px;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:#B76E48;">30+</div>
+          <div style="font-size:8px;color:#78716c;">Agent platforms support SKILL.md</div>
+        </div>
+        <div style="background:#f5f5f4;border-radius:6px;padding:8px 10px;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:#B76E48;">37%</div>
+          <div style="font-size:8px;color:#78716c;">Of Skills have security flaws</div>
         </div>
       </div>
-      <div class="more-tba">More speakers to be announced &mdash; stay tuned!</div>
-    </div>
-
-    <div class="panel">
-      <div class="sec-label">Submission Details</div>
-      <div class="info-item"><span class="info-key">Format</span><span class="info-val">Full papers (9p) &amp; Short papers (4p)</span></div>
-      <div class="info-item"><span class="info-key">Template</span><span class="info-val">ACM SIGPLAN proceedings (double-blind)</span></div>
-      <div class="info-item"><span class="info-key">Expected</span><span class="info-val">30&ndash;50 submissions; 8&ndash;12 accepted</span></div>
-      <div class="info-item"><span class="info-key">Artifacts</span><span class="info-val">Code, Skills, datasets encouraged</span></div>
-      <div class="info-item"><span class="info-key">Contact</span><span class="info-val"><a href="mailto:xiangyi@benchflow.ai">xiangyi@benchflow.ai</a></span></div>
-      <div class="cta-box">
-        <div class="cta-text">Subscribe for Updates &amp; Submit Papers</div>
-        <div class="cta-url">agentskills-workshop.github.io</div>
-      </div>
+      <div style="font-size:9px;color:#78716c;line-height:1.4;">Adopted by Claude Code, Gemini CLI, Codex, OpenClaw, Cursor, Copilot, and more. The field needs a dedicated academic venue.</div>
     </div>
   </div>
 
-  <!-- ORGANIZERS -->
-  <div class="org-section">
-    <div class="sec-label">Organizers</div>
-    <div class="org-grid">
-      <div class="org"><img src="photos/xiangyi.jpg" alt="Xiangyi Li"><div class="org-name">Xiangyi Li</div><div class="org-aff">BenchFlow</div></div>
-      <div class="org"><img src="photos/wenbo.jpg" alt="Wenbo Chen"><div class="org-name">Wenbo Chen</div><div class="org-aff">Amazon</div></div>
-      <div class="org"><img src="photos/xuandong.jpg" alt="Xuandong Zhao"><div class="org-name">Xuandong Zhao</div><div class="org-aff">UC Berkeley</div></div>
-      <div class="org"><img src="photos/kyoung.jpg" alt="Kyoung Whan Choe"><div class="org-name">Kyoung W. Choe</div><div class="org-aff">RLWRLD</div></div>
-      <div class="org"><img src="photos/yimin.jpg" alt="Yimin Liu"><div class="org-name">Yimin Liu</div><div class="org-aff">Ohio State</div></div>
-      <div class="org"><img src="photos/xiaokun.png" alt="Xiaokun Chen"><div class="org-name">Xiaokun Chen</div><div class="org-aff">Stanford</div></div>
-      <div class="org"><img src="photos/shenghan.png" alt="Shenghan Zheng"><div class="org-name">Shenghan Zheng</div><div class="org-aff">Dartmouth</div></div>
-      <div class="org"><img src="photos/yifeng.jpg" alt="Yifeng He"><div class="org-name">Yifeng He</div><div class="org-aff">UC Davis</div></div>
-      <div class="org"><img src="photos/haochen.jpg" alt="Hao Chen"><div class="org-name">Hao Chen</div><div class="org-aff">UC Davis</div></div>
-      <div class="org"><img src="photos/yushun.jpg" alt="Yushun Dong"><div class="org-name">Yushun Dong</div><div class="org-aff">Florida State</div></div>
-      <div class="org"><img src="photos/yanliu.jpg" alt="Yan Liu"><div class="org-name">Yan Liu</div><div class="org-aff">USC</div></div>
-      <div class="org"><img src="photos/hanlee.jpg" alt="Han-chung Lee"><div class="org-name">Han-chung Lee</div><div class="org-aff">Moody's</div></div>
-      <div class="org"><img src="photos/yuezhao.jpg" alt="Yue Zhao"><div class="org-name">Yue Zhao</div><div class="org-aff">USC</div></div>
-      <div class="org"><img src="photos/emilio.jpg" alt="Emilio Ferrara"><div class="org-name">Emilio Ferrara</div><div class="org-aff">USC</div></div>
-      <div class="org"><img src="photos/dawnsong.jpg" alt="Dawn Song"><div class="org-name">Dawn Song</div><div class="org-aff">UC Berkeley</div></div>
-    </div>
+  <div class="sl">Organizers</div>
+  <div class="og">
+    <div class="o"><img src="photos/xiangyi.jpg"><div class="o-n">Xiangyi Li</div><div class="o-a">BenchFlow</div></div>
+    <div class="o"><img src="photos/wenbo.jpg"><div class="o-n">Wenbo Chen</div><div class="o-a">Amazon</div></div>
+    <div class="o"><img src="photos/xuandong.jpg"><div class="o-n">Xuandong Zhao</div><div class="o-a">UC Berkeley</div></div>
+    <div class="o"><img src="photos/kyoung.jpg"><div class="o-n">Kyoung W. Choe</div><div class="o-a">RLWRLD</div></div>
+    <div class="o"><img src="photos/yimin.jpg"><div class="o-n">Yimin Liu</div><div class="o-a">Ohio State</div></div>
+    <div class="o"><img src="photos/xiaokun.png"><div class="o-n">Xiaokun Chen</div><div class="o-a">Stanford</div></div>
+    <div class="o"><img src="photos/shenghan.png"><div class="o-n">Shenghan Zheng</div><div class="o-a">Dartmouth</div></div>
+    <div class="o"><img src="photos/yifeng.jpg"><div class="o-n">Yifeng He</div><div class="o-a">UC Davis</div></div>
+    <div class="o"><img src="photos/haochen.jpg"><div class="o-n">Hao Chen</div><div class="o-a">UC Davis</div></div>
+    <div class="o"><img src="photos/yushun.jpg"><div class="o-n">Yushun Dong</div><div class="o-a">Florida State</div></div>
+    <div class="o"><img src="photos/yanliu.jpg"><div class="o-n">Yan Liu</div><div class="o-a">USC</div></div>
+    <div class="o"><img src="photos/hanlee.jpg"><div class="o-n">Han-chung Lee</div><div class="o-a">Moody's</div></div>
+    <div class="o"><img src="photos/yuezhao.jpg"><div class="o-n">Yue Zhao</div><div class="o-a">USC</div></div>
+    <div class="o"><img src="photos/emilio.jpg"><div class="o-n">Emilio Ferrara</div><div class="o-a">USC</div></div>
+    <div class="o"><img src="photos/dawnsong.jpg"><div class="o-n">Dawn Song</div><div class="o-a">UC Berkeley</div></div>
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footer-left">Co-located with ACM CAIS 2026 &middot; San Jose Convention Center &middot; Sponsorship inquiries: xiangyi@benchflow.ai</div>
-    <div class="footer-right">
-      <span class="footer-tag">#AgentSkills26</span>
-      <span class="footer-tag">SKILL.md</span>
-      <span class="footer-tag">MCP</span>
-      <span class="footer-tag">ACM CAIS</span>
+  <div class="ft">
+    <div class="ft-l">Co-located with ACM CAIS 2026 &middot; San Jose Convention Center &middot; Sponsorship: xiangyi@benchflow.ai</div>
+    <div class="ft-r">
+      <span class="ft-t">#AgentSkills26</span>
+      <span class="ft-t">SKILL.md</span>
+      <span class="ft-t">MCP</span>
+      <span class="ft-t">ACM CAIS</span>
     </div>
   </div>
 
 </div>
-
 </body>
 </html>
