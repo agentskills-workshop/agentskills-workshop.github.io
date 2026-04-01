@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ClawsBench COLM — Review</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#fafaf9;color:#1c1917;display:flex;height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:260px;min-width:260px;background:#fff;border-right:1px solid #e7e5e4;padding:16px 0;overflow-y:auto;display:flex;flex-direction:column}
+.sidebar h1{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#78716c;padding:0 16px 12px;border-bottom:1px solid #e7e5e4;margin-bottom:8px}
+.sidebar h1 span{color:#B76E48}
+.tree-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#a8a29e;padding:12px 16px 4px}
+.tree-item{display:flex;align-items:center;gap:6px;padding:5px 16px 5px 24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#57534e;cursor:pointer;border-left:2px solid transparent;text-decoration:none}
+.tree-item:hover{background:#f5f5f4;color:#1c1917}
+.tree-item.active{background:#eff6ff;color:#2563eb;border-left-color:#2563eb}
+.tree-icon{font-size:10px;width:14px;text-align:center;flex-shrink:0}
+.tree-badge{margin-left:auto;font-size:9px;font-weight:600;padding:1px 5px;border-radius:8px}
+.tree-badge.high{background:#fee2e2;color:#dc2626}
+.tree-badge.medium{background:#fef9c3;color:#ca8a04}
+.tree-badge.low{background:#dcfce7;color:#16a34a}
+.tree-badge.done{background:#e7e5e4;color:#78716c}
+.sidebar-footer{margin-top:auto;padding:12px 16px;border-top:1px solid #e7e5e4;font-size:10px;color:#a8a29e}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;padding:32px 40px}
+.main h2{font-size:18px;font-weight:700;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.main h2 .path{color:#78716c;font-weight:400}
+.file-meta{font-size:11px;color:#a8a29e;margin-bottom:20px}
+
+.issue{background:#fff;border:1px solid #e7e5e4;border-radius:8px;padding:14px 18px;margin-bottom:10px}
+.issue-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.issue-title{font-weight:600;font-size:13px}
+.sev{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;text-transform:uppercase;letter-spacing:.4px}
+.sev.high{background:#fee2e2;color:#dc2626}
+.sev.medium{background:#fef9c3;color:#ca8a04}
+.sev.low{background:#dcfce7;color:#16a34a}
+.sev.done{background:#e7e5e4;color:#78716c}
+.issue p{font-size:12px;color:#57534e;margin-bottom:8px;line-height:1.5}
+.label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.label.cur{color:#a8a29e}
+.label.pro{color:#2563eb}
+.label.applied{color:#16a34a}
+.code{background:#f5f5f4;border-radius:5px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#57534e;margin:4px 0 10px;white-space:pre-wrap;line-height:1.5;overflow-x:auto}
+.code.pro{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.code.applied{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}
+
+/* REVIEWER SECTION */
+.rev{background:#fff;border-left:3px solid #dc2626;padding:12px 16px;margin:8px 0;font-size:12px;line-height:1.5}
+.rev.push{border-left-color:#ca8a04}
+.rev strong.q{color:#dc2626}
+.rev strong.p{color:#ca8a04}
+
+.divider{height:1px;background:#e7e5e4;margin:24px 0}
+.summary-box{background:#f5f5f4;border-radius:8px;padding:14px 18px;font-size:12px;color:#57534e;margin-top:24px;line-height:1.6}
+.summary-box strong{color:#1c1917}
+
+/* Tab nav */
+.tabs{display:flex;gap:0;border-bottom:1px solid #e7e5e4;margin-bottom:20px}
+.tab{padding:8px 16px;font-size:12px;font-weight:500;color:#78716c;cursor:pointer;border-bottom:2px solid transparent}
+.tab:hover{color:#1c1917}
+.tab.active{color:#2563eb;border-bottom-color:#2563eb}
+.tab-content{display:none}
+.tab-content.active{display:block}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h1>clawsbench/<span>review</span></h1>
+
+  <div class="tree-label">LaTeX Sources</div>
+  <a class="tree-item active" href="#abstract" onclick="showFile('abstract')">
+    <span class="tree-icon">📄</span>000abstract.tex
+    <span class="tree-badge medium">2</span>
+  </a>
+  <a class="tree-item" href="#intro" onclick="showFile('intro')">
+    <span class="tree-icon">📄</span>010introduction.tex
+    <span class="tree-badge done">applied</span>
+  </a>
+  <a class="tree-item" href="#related" onclick="showFile('related')">
+    <span class="tree-icon">📄</span>020related.tex
+    <span class="tree-badge done">applied</span>
+  </a>
+  <a class="tree-item" href="#env" onclick="showFile('env')">
+    <span class="tree-icon">📄</span>030environment.tex
+    <span class="tree-badge high">2</span>
+  </a>
+  <a class="tree-item" href="#task" onclick="showFile('task')">
+    <span class="tree-icon">📄</span>040task.tex
+    <span class="tree-badge medium">2</span>
+  </a>
+  <a class="tree-item" href="#exp" onclick="showFile('exp')">
+    <span class="tree-icon">📄</span>050experiments.tex
+    <span class="tree-badge high">3</span>
+  </a>
+  <a class="tree-item" href="#disc" onclick="showFile('disc')">
+    <span class="tree-icon">📄</span>060conclusion.tex
+    <span class="tree-badge low">1</span>
+  </a>
+  <a class="tree-item" href="#limit" onclick="showFile('limit')">
+    <span class="tree-icon">📄</span>070limit.tex
+    <span class="tree-badge low">ok</span>
+  </a>
+
+  <div class="tree-label">Bibliography</div>
+  <a class="tree-item" href="#bib" onclick="showFile('bib')">
+    <span class="tree-icon">📚</span>BIB/ref.bib
+    <span class="tree-badge medium">2</span>
+  </a>
+
+  <div class="tree-label">Missing Files</div>
+  <a class="tree-item" href="#figures" onclick="showFile('figures')">
+    <span class="tree-icon">🖼️</span>figures/ (missing)
+    <span class="tree-badge high">0 figs</span>
+  </a>
+
+  <div class="tree-label">Reviewer Sim</div>
+  <a class="tree-item" href="#reviewer" onclick="showFile('reviewer')">
+    <span class="tree-icon">🔴</span>critical_review.md
+    <span class="tree-badge high">9+7</span>
+  </a>
+
+  <div class="sidebar-footer">Generated 2026-04-01<br>Do NOT merge blindly</div>
+</div>
+
+<div class="main" id="main-content">
+
+<!-- ===== ABSTRACT ===== -->
+<div class="tab-content active" id="file-abstract">
+<h2><span class="path">SEC/</span>000abstract.tex</h2>
+<div class="file-meta">14 lines · 2 issues (medium)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">L1: Generic opening sentence</span><span class="sev medium">medium</span></div>
+<p>Same opening as hundreds of agent papers. Doesn't tell the reviewer why THIS paper matters.</p>
+<div class="label cur">CURRENT (line 13)</div>
+<div class="code">Large language model (LLM) agents are increasingly expected to automate real-world productivity tasks (e.g., email, scheduling, document management), but evaluating them on live services is risky...</div>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">Deploying LLM agents on productivity services risks irreversible harm---a single misconfigured forwarding rule can leak confidential data, and a bulk-delete cannot be undone---yet no benchmark provides the mock environments needed to evaluate agents on the services billions of people use daily.</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Key finding buried at end</span><span class="sev medium">medium</span></div>
+<p>The capability-safety decoupling is the paper's most quotable result but appears in the last sentence. Lead with it or at least make it a standalone sentence.</p>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">Add before the final sentence: "Our central finding: model scaling raises task success by up to 37.5 percentage points but does not reduce unsafe behavior in any condition---capability and safety are fundamentally decoupled."</div>
+</div>
+</div>
+
+<!-- ===== INTRO ===== -->
+<div class="tab-content" id="file-intro">
+<h2><span class="path">SEC/</span>010introduction.tex</h2>
+<div class="file-meta">32 lines · APPLIED — rewritten and pushed (commit 8e874ea)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Paragraph 1: rewrote with real incidents</span><span class="sev done">applied</span></div>
+<p>Replaced generic opening with Summer Yue incident (citing Ying et al. arXiv) + Agents of Chaos (Shapira et al.). Fixed incorrect "rollback is straightforward" claim.</p>
+<div class="label applied">APPLIED TEXT</div>
+<div class="code applied">In early 2026, autonomous agents with persistent access to productivity services began failing in ways that capability benchmarks could not predict.
+An agent connected to a live email account bulk-deleted hundreds of messages after its safety instructions were lost during context window compression~\citep{ying2026openclaw}.
+In a controlled study, \citet{shapira2026agents} gave twenty researchers tool-using agents with access to email, messaging, and file systems; the agents disclosed sensitive information, executed destructive actions, and complied with unauthorized users.
+These failures share a common root: agents were evaluated on developer-facing benchmarks but deployed on the productivity services that billions of knowledge workers depend on daily---and the gap between the two domains is not just topical but structural.</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Paragraph 2: domain coverage framing</span><span class="sev done">applied</span></div>
+<p>Replaced "rollback is straightforward" with correct framing: developer-facing tools vs. productivity services with stateful complexity.</p>
+<div class="label applied">APPLIED TEXT</div>
+<div class="code applied">Existing agent benchmarks target code repositories~\citep{jimenez2023swebench}, web interfaces~\citep{zhou2023webarena}, and operating systems~\citep{xie2024osworld}---domains that do not exercise the stateful complexity of real productivity services.</div>
+</div>
+</div>
+
+<!-- ===== RELATED ===== -->
+<div class="tab-content" id="file-related">
+<h2><span class="path">SEC/</span>020related.tex</h2>
+<div class="file-meta">11 lines · APPLIED — citations trimmed (commit 8e874ea)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">¶1: 26 citations → 12</span><span class="sev done">applied</span></div>
+<p>Kept one representative per category. Dropped: commit02025, codeclash2025, deng2023mind2web, wei2025browsecomp, rawles2024androidworld, bonatti2024windowsagentarena, terminalbench2026, li2023apibank, patil2025bfcl, chen2025acebench, toolhop2025, gaia2_2026, xie2024travelplanner, chan2024mlebench, arcagi2025, lmarena2024, agentdiff2026, odysseybench2025.</p>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">¶2: MCP benchmarks 5 → 1</span><span class="sev done">applied</span></div>
+<p>Kept mcpverse2025 as representative. Dropped mcpradar2025, mcptoolbench2025, mcpatlas2026, mcpmark2025.</p>
+</div>
+</div>
+
+<!-- ===== ENVIRONMENT ===== -->
+<div class="tab-content" id="file-env">
+<h2><span class="path">SEC/</span>030environment.tex</h2>
+<div class="file-meta">49 lines · 2 issues (1 high, 1 medium)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">No architecture figure</span><span class="sev high">high</span></div>
+<p>Section 3 describes 5 mock services, state management, snapshot/restore, and evaluation but has NO figure. Every top benchmark paper (WebArena, OSWorld, SWE-bench) has an architecture diagram. This is the single highest-impact visual improvement.</p>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">Add a figure showing:
+- 5 mock services as boxes (Gmail, GCal, GDocs, GDrive, Slack)
+- Each with SQLite icon + REST API surface
+- Agent harness (OpenClaw / Gemini CLI) connecting via MCP or CLI
+- Snapshot/restore arrows
+- Evaluator comparing pre/post database states
+- Skills directory feeding into agent</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Missing comparison with competitors</span><span class="sev medium">medium</span></div>
+<p>A small table or figure comparing ClawsBench environments vs AppWorld / ASTRA-bench (endpoints, state management, conformance testing) would immediately communicate the fidelity advantage.</p>
+</div>
+</div>
+
+<!-- ===== TASK ===== -->
+<div class="tab-content" id="file-task">
+<h2><span class="path">SEC/</span>040task.tex</h2>
+<div class="file-meta">67 lines · 2 issues (medium)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Meta prompt derivation lacks methodology</span><span class="sev medium">medium</span></div>
+<p>"Derived from analyzing 1,200 agent trajectories in a 30-repeat pilot" — but HOW were failure modes categorized? How were the 10 rules selected from potentially hundreds of patterns? Needs 2-3 sentences or an appendix pointer.</p>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">Add after line 66: "We manually annotated 200 randomly sampled failure trajectories across all task categories, identified 23 recurring failure patterns, and consolidated them into 10 rules covering the five most frequent safety violations and five most common execution errors. Inter-annotator agreement (Cohen's $\kappa$) on failure categorization was 0.82 across two annotators (details in Appendix~\ref{app:meta-prompt})."</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Contribution (3) title is jargon-heavy</span><span class="sev medium">medium</span></div>
+<p>"Agent Skills with Progressive Disclosure and skill routing" won't parse for a reviewer unfamiliar with the Agent Skills ecosystem.</p>
+<div class="label cur">CURRENT</div>
+<div class="code">\item \textbf{Agent Skills with \progdisc{} and skill routing.}</div>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">\item \textbf{Layered API knowledge with failure-driven routing.}</div>
+</div>
+</div>
+
+<!-- ===== EXPERIMENTS ===== -->
+<div class="tab-content" id="file-exp">
+<h2><span class="path">SEC/</span>050experiments.tex</h2>
+<div class="file-meta">111 lines · 3 issues (2 high, 1 low)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Only Gemini models tested</span><span class="sev high">high</span></div>
+<p>Testing only Gemini 3.1 Flash-Lite and Pro is the paper's biggest weakness. All findings could be Gemini-specific. Reviewers WILL flag this. Even 1-repeat runs on Claude Sonnet or GPT-4o would help. If infeasible, add a paragraph explicitly acknowledging this as the primary limitation and explaining why (cost, API access, time).</p>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">Add to §5.1 setup: "We selected Gemini models because [reason---e.g., API availability for automated evaluation, cost constraints for 2,625 trials]. Extending to Claude and GPT families is a priority for future work; the framework is model-agnostic and requires only a compatible agent harness."</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">5 repeats may be underpowered for safety claims</span><span class="sev high">high</span></div>
+<p>Some conditions show 100% failure on safety tasks — but that's 5/5 trials. The 30-repeat pilot gives confidence, but reviewers may question 5-repeat precision for binary safety metrics. Consider adding a power analysis or citing the split-half reliability more prominently.</p>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">Strengthen the reliability claim in §5.1 by moving the split-half statistic earlier: "The 5-repeat design was calibrated against a 30-repeat pilot: task-level split-half reliability $r_{\mathrm{SB}} \geq 0.95$ for all metrics, and pilot-to-main correlation $r = 0.92$, indicating that 5 repeats suffice for condition-level comparisons (per-task estimates require more repeats; see Appendix~\ref{app:reliability})."</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Sandbox escalation deserves a figure</span><span class="sev low">low</span></div>
+<p>The multi-step escalation (env discovery → sqlite3 → python3 → API fallback) is the paper's most vivid finding. A flowchart showing the escalation chain would be memorable and highly citable.</p>
+</div>
+</div>
+
+<!-- ===== DISCUSSION ===== -->
+<div class="tab-content" id="file-disc">
+<h2><span class="path">SEC/</span>060conclusion.tex</h2>
+<div class="file-meta">28 lines · 1 issue (low)</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Expand "Implications for deployment"</span><span class="sev low">low</span></div>
+<p>This paragraph is the one practitioners will read. Currently 2 sentences. Could benefit from concrete recommendations (e.g., "deploy with structural constraints like OpenClaw's deny-by-default policy, not just prompt-level safety instructions").</p>
+</div>
+</div>
+
+<!-- ===== LIMITATIONS ===== -->
+<div class="tab-content" id="file-limit">
+<h2><span class="path">SEC/</span>070limit.tex</h2>
+<div class="file-meta">22 lines · No changes needed</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Well-written, honest limitations</span><span class="sev low">ok</span></div>
+<p>The "we cannot confirm that a simpler mock would produce different agent scores" admission shows intellectual maturity. The single-model-family limitation is clearly stated. Keep as-is.</p>
+</div>
+</div>
+
+<!-- ===== BIB ===== -->
+<div class="tab-content" id="file-bib">
+<h2><span class="path">BIB/</span>ref.bib</h2>
+<div class="file-meta">Bibliography · 2 issues</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Add Ying et al. 2026 (OpenClaw security)</span><span class="sev medium">medium</span></div>
+<p>New citation needed for the intro rewrite.</p>
+<div class="label pro">PROPOSED</div>
+<div class="code pro">@article{ying2026openclaw,
+  title={Uncovering Security Threats and Architecting Defenses in Autonomous Agents: A Case Study of OpenClaw},
+  author={Ying, Zonghao and Yang, Xiao and Wu, Siyang and Song, Yumeng and Qu, Yang and Li, Hainan and Li, Tianlin and Wang, Jiakai and Liu, Aishan and Liu, Xianglong},
+  journal={arXiv preprint arXiv:2603.12644},
+  year={2026}
+}</div>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Verify all dropped citations are removed from ref.bib</span><span class="sev medium">medium</span></div>
+<p>After trimming §2 citations, check that unused BibTeX entries are either removed or left (LaTeX ignores unused entries, but clean is better).</p>
+</div>
+</div>
+
+<!-- ===== FIGURES ===== -->
+<div class="tab-content" id="file-figures">
+<h2><span class="path">figures/</span> (missing directory)</h2>
+<div class="file-meta">0 figures in the paper · HIGH priority</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Paper has ZERO figures</span><span class="sev high">high</span></div>
+<p>Most accepted benchmark papers at COLM/NeurIPS/ICML have 3-5 figures. This paper has tables only. Minimum needed:</p>
+<div class="label pro">PROPOSED FIGURES</div>
+<div class="code pro">Figure 1: System architecture — 5 mock services, agent harness, MCP/CLI, evaluator, snapshot/restore
+Figure 2: Task example walkthrough — one multi-service task showing instruction → agent actions → state changes → evaluation
+Figure 3: Main results visualization — grouped bar chart of TSR/UAR/SCR across conditions (Table 2 as a visual)
+Figure 4 (optional): Sandbox escalation flowchart — the multi-step attack chain
+Figure 5 (optional): Safety scoring illustration — the [-1,1] scale with examples</div>
+</div>
+</div>
+
+<!-- ===== REVIEWER ===== -->
+<div class="tab-content" id="file-reviewer">
+<h2><span class="path">review/</span>critical_review.md</h2>
+<div class="file-meta">Simulated COLM reviewer · 9 questions + 7 pushbacks</div>
+
+<h3 style="color:#dc2626;margin:16px 0 8px">Fundamental Questions</h3>
+
+<div class="rev">
+<strong class="q">Q1: Why only Gemini models?</strong> You test two models from a single family. All findings could be Gemini-specific artifacts. Without Claude/GPT/open-weight models, how can you claim general properties of LLM agents?
+</div>
+
+<div class="rev">
+<strong class="q">Q2: Is 44 tasks enough?</strong> WebArena has 812, SWE-bench has 2,294. How do you know findings aren't driven by task-specific idiosyncrasies?
+</div>
+
+<div class="rev">
+<strong class="q">Q3: What's the contribution beyond engineering?</strong> Mock environments are engineering. AppWorld/ASTRA-bench already showed mock APIs enable eval. You claim "higher fidelity" but don't ablate fidelity levels.
+</div>
+
+<div class="rev">
+<strong class="q">Q4: How is Progressive Disclosure different from "documentation"?</strong> Organizing docs into Tier 1/Tier 2 is standard practice, not a research contribution.
+</div>
+
+<div class="rev">
+<strong class="q">Q5: Capability-safety decoupling is already known.</strong> Anthropic and DeepMind have published on inverse scaling and emergent risks. Your contribution is domain-specific — is that sufficient novelty?
+</div>
+
+<div class="rev">
+<strong class="q">Q6: Where's the GEPA optimization?</strong> Abstract and related work mention it. Experiments don't include it. Is this vaporware?
+</div>
+
+<div class="rev">
+<strong class="q">Q7: No human baseline.</strong> Without a human ceiling, the reader can't assess whether 62% TSR is good or bad.
+</div>
+
+<div class="rev">
+<strong class="q">Q8: No full error analysis.</strong> You highlight 4 rogue behaviors from 2,625 trials. What's the full distribution of ALL failure modes?
+</div>
+
+<div class="rev">
+<strong class="q">Q9: No cost/efficiency analysis.</strong> How many API calls per task? How much does evaluation cost? How long does it take?
+</div>
+
+<h3 style="color:#ca8a04;margin:24px 0 8px">Methodology Pushbacks</h3>
+
+<div class="rev push">
+<strong class="p">P1: Meta prompt is overfit.</strong> Derived from 30-repeat pilot on the SAME tasks. Effectiveness may reflect memorization of task-specific patterns, not generalizable safety.
+</div>
+
+<div class="rev push">
+<strong class="p">P2: 5 repeats + Holm-Bonferroni = underpowered.</strong> After correction across 12 conditions, you lose power. "Not significant" may mean "not enough data."
+</div>
+
+<div class="rev push">
+<strong class="p">P3: OpenClaw vs Gemini CLI is confounded.</strong> You attribute safety differences to "harness architecture" but OpenClaw differs in execution policy AND model invocation pattern. Did you isolate the deny-by-default policy specifically?
+</div>
+
+<div class="rev push">
+<strong class="p">P4: Safety task design is circular.</strong> You define 5 unsafe behavior categories, design tasks to elicit them, then report agents exhibit those behaviors. The 2 emergent behaviors (sandbox escalation, contract modification) are more convincing.
+</div>
+
+<div class="rev push">
+<strong class="p">P5: Zero figures.</strong> No architecture diagram, no results visualization, no task walkthrough. Every accepted benchmark paper has 3-5 figures.
+</div>
+
+<div class="rev push">
+<strong class="p">P6: Comparison table lists 60 benchmarks.</strong> Impressive but overwhelming. A focused 10-15 benchmark table with clear advantages would be more effective.
+</div>
+
+<div class="rev push">
+<strong class="p">P7: Two papers stitched together.</strong> §3-4 = benchmark platform. §5 = empirical safety study. The narrative doesn't clearly connect them. Needs a stronger "red thread."
+</div>
+
+</div>
+
+</div>
+
+<script>
+function showFile(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('file-' + id).classList.add('active');
+  event.target.closest('.tree-item').classList.add('active');
+}
+</script>
+
+</body>
+</html>
