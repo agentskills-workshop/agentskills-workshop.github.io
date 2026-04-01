@@ -82,11 +82,11 @@ body{font-family:'Inter',sans-serif;background:#fafaf9;color:#1c1917;display:fle
   </a>
   <a class="tree-item" href="#related" onclick="showFile('related')">
     <span class="tree-icon">📄</span>020related.tex
-    <span class="tree-badge done">applied</span>
+    <span class="tree-badge done">rewritten</span>
   </a>
   <a class="tree-item" href="#env" onclick="showFile('env')">
     <span class="tree-icon">📄</span>030environment.tex
-    <span class="tree-badge high">2</span>
+    <span class="tree-badge done">applied</span>
   </a>
   <a class="tree-item" href="#task" onclick="showFile('task')">
     <span class="tree-icon">📄</span>040task.tex
@@ -94,7 +94,7 @@ body{font-family:'Inter',sans-serif;background:#fafaf9;color:#1c1917;display:fle
   </a>
   <a class="tree-item" href="#exp" onclick="showFile('exp')">
     <span class="tree-icon">📄</span>050experiments.tex
-    <span class="tree-badge high">3</span>
+    <span class="tree-badge done">applied</span>
   </a>
   <a class="tree-item" href="#disc" onclick="showFile('disc')">
     <span class="tree-icon">📄</span>060conclusion.tex
@@ -108,13 +108,13 @@ body{font-family:'Inter',sans-serif;background:#fafaf9;color:#1c1917;display:fle
   <div class="tree-label">Bibliography</div>
   <a class="tree-item" href="#bib" onclick="showFile('bib')">
     <span class="tree-icon">📚</span>BIB/ref.bib
-    <span class="tree-badge medium">2</span>
+    <span class="tree-badge done">1 fixed</span>
   </a>
 
-  <div class="tree-label">Missing Files</div>
+  <div class="tree-label">Figures</div>
   <a class="tree-item" href="#figures" onclick="showFile('figures')">
-    <span class="tree-icon">🖼️</span>figures/ (missing)
-    <span class="tree-badge high">0 figs</span>
+    <span class="tree-icon">🖼️</span>SEC/fig_*.pdf
+    <span class="tree-badge done">3 figs</span>
   </a>
 
   <div class="tree-label">Reviewer Sim</div>
@@ -160,7 +160,7 @@ body{font-family:'Inter',sans-serif;background:#fafaf9;color:#1c1917;display:fle
 <p>Replaced generic opening with Summer Yue incident (citing Ying et al. arXiv) + Agents of Chaos (Shapira et al.). Fixed incorrect "rollback is straightforward" claim.</p>
 <div class="label applied">APPLIED TEXT</div>
 <div class="code applied">In early 2026, autonomous agents with persistent access to productivity services began failing in ways that capability benchmarks could not predict.
-An agent connected to a live email account bulk-deleted hundreds of messages after its safety instructions were lost during context window compression~\citep{ying2026openclaw}.
+An agent connected to a live email account bulk-deleted hundreds of messages after its safety instructions were lost during context window compression~\citep{openclaw_security2026}.
 In a controlled study, \citet{shapira2026agents} gave twenty researchers tool-using agents with access to email, messaging, and file systems; the agents disclosed sensitive information, executed destructive actions, and complied with unauthorized users.
 These failures share a common root: agents were evaluated on developer-facing benchmarks but deployed on the productivity services that billions of knowledge workers depend on daily---and the gap between the two domains is not just topical but structural.</div>
 </div>
@@ -176,40 +176,46 @@ These failures share a common root: agents were evaluated on developer-facing be
 <!-- ===== RELATED ===== -->
 <div class="tab-content" id="file-related">
 <h2><span class="path">SEC/</span>020related.tex</h2>
-<div class="file-meta">11 lines · APPLIED — citations trimmed (commit 8e874ea)</div>
+<div class="file-meta">REWRITTEN — reorganized by conceptual gaps, following best paper writing guides</div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">¶1: 26 citations → 12</span><span class="sev done">applied</span></div>
-<p>Kept one representative per category. Dropped: commit02025, codeclash2025, deng2023mind2web, wei2025browsecomp, rawles2024androidworld, bonatti2024windowsagentarena, terminalbench2026, li2023apibank, patil2025bfcl, chen2025acebench, toolhop2025, gaia2_2026, xie2024travelplanner, chan2024mlebench, arcagi2025, lmarena2024, agentdiff2026, odysseybench2025.</p>
+<div class="issue-header"><span class="issue-title">Full rewrite: citation parade → conceptual structure</span><span class="sev done">applied</span></div>
+<p>Reorganized around three gaps ClawsBench fills, per advice from Carlini, Farquhar, and Orchestra guides: (1) no high-fidelity productivity environments, (2) safety conflated with capability, (3) no skill evaluation within benchmarks. Every citation group now contrasts explicitly with our contribution. All 35 citations preserved. Opens with motivation, not generic "LLMs are great."</p>
+<div class="label applied">NEW STRUCTURE</div>
+<div class="code applied">¶1 "Evaluating agents outside productivity" — positions mocks vs existing benchmarks
+¶2 "Safety as a first-class evaluation dimension" — [-1,1] scoring vs fragmented safety work
+¶3 "From skill libraries to skill evaluation" — skills' dual effect on capability AND safety</div>
 </div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">¶2: MCP benchmarks 5 → 1</span><span class="sev done">applied</span></div>
-<p>Kept mcpverse2025 as representative. Dropped mcpradar2025, mcptoolbench2025, mcpatlas2026, mcpmark2025.</p>
+<div class="issue-header"><span class="issue-title">Previous: citations trimmed (commit 8e874ea)</span><span class="sev done">applied</span></div>
+<p>Kept one representative per category. MCP benchmarks 5 → 1.</p>
 </div>
 </div>
 
 <!-- ===== ENVIRONMENT ===== -->
 <div class="tab-content" id="file-env">
 <h2><span class="path">SEC/</span>030environment.tex</h2>
-<div class="file-meta">49 lines · 2 issues (1 high, 1 medium)</div>
+<div class="file-meta">49 lines · APPLIED — Table 8 fixed, off-policy learning added</div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">No architecture figure</span><span class="sev high">high</span></div>
-<p>Section 3 describes 5 mock services, state management, snapshot/restore, and evaluation but has NO figure. Every top benchmark paper (WebArena, OSWorld, SWE-bench) has an architecture diagram. This is the single highest-impact visual improvement.</p>
-<div class="label pro">PROPOSED</div>
-<div class="code pro">Add a figure showing:
-- 5 mock services as boxes (Gmail, GCal, GDocs, GDrive, Slack)
-- Each with SQLite icon + REST API surface
-- Agent harness (OpenClaw / Gemini CLI) connecting via MCP or CLI
-- Snapshot/restore arrows
-- Evaluator comparing pre/post database states
-- Skills directory feeding into agent</div>
+<div class="issue-header"><span class="issue-title">Architecture figure created</span><span class="sev done">applied</span></div>
+<p>Generated <code>fig_architecture.pdf</code>: 5 mock services with SQLite backends, MCP/CLI interface, agent harness (OpenClaw + Gemini CLI), Skills/Meta Prompt, Daytona sandbox, snapshot/restore, and state-based evaluator with numbered flow steps.</p>
 </div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">Missing comparison with competitors</span><span class="sev medium">medium</span></div>
-<p>A small table or figure comparing ClawsBench environments vs AppWorld / ASTRA-bench (endpoints, state management, conformance testing) would immediately communicate the fidelity advantage.</p>
+<div class="issue-header"><span class="issue-title">Table 8 → \ref{tab:validation}</span><span class="sev done">applied</span></div>
+<p>Hard-coded "Table 8" replaced with proper LaTeX cross-reference to appendix table label.</p>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Off-policy learning note added</span><span class="sev done">applied</span></div>
+<p>Added: "state-based evaluation also enables value-based off-policy learning: reward signals from one policy's rollouts can be used to improve a different policy without re-execution."</p>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Comparison table (table_comparison_mini)</span><span class="sev done">applied</span></div>
+<p>Mini comparison table merged from Overleaf branch, added to related work section.</p>
 </div>
 </div>
 
@@ -238,13 +244,26 @@ These failures share a common root: agents were evaluated on developer-facing be
 <!-- ===== EXPERIMENTS ===== -->
 <div class="tab-content" id="file-exp">
 <h2><span class="path">SEC/</span>050experiments.tex</h2>
-<div class="file-meta">111 lines · 3 issues (2 high, 1 low)</div>
+<div class="file-meta">111 lines · APPLIED — GWS spelled out, model names, acronyms expanded, section refs fixed</div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">Only Gemini models tested</span><span class="sev high">high</span></div>
-<p>Testing only Gemini 3.1 Flash-Lite and Pro is the paper's biggest weakness. All findings could be Gemini-specific. Reviewers WILL flag this. Even 1-repeat runs on Claude Sonnet or GPT-4o would help. If infeasible, add a paragraph explicitly acknowledging this as the primary limitation and explaining why (cost, API access, time).</p>
-<div class="label pro">PROPOSED</div>
-<div class="code pro">Add to §5.1 setup: "We selected Gemini models because [reason---e.g., API availability for automated evaluation, cost constraints for 2,625 trials]. Extending to Claude and GPT families is a priority for future work; the framework is model-agnostic and requires only a compatible agent harness."</div>
+<div class="issue-header"><span class="issue-title">GWS → spelled out</span><span class="sev done">applied</span></div>
+<p>Replaced "GWS" with "Gmail, Calendar, Drive, and Slack" in Conditions paragraph.</p>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Model names spelled out in Table 4 caption</span><span class="sev done">applied</span></div>
+<p>Caption now includes "Gemini 3.1 Flash-Lite and Gemini 3.1 Pro". Acronyms Sk/Mt expanded to "Domain Skills"/"Meta Prompt".</p>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Section refs: hardcoded → \ref{}</span><span class="sev done">applied</span></div>
+<p>"Section~4" → "Section~\ref{sec:task}" for proper cross-referencing.</p>
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Only Gemini models tested (still open)</span><span class="sev high">high</span></div>
+<p>Testing only Gemini 3.1 Flash-Lite and Pro remains the paper's biggest weakness. Acknowledged in Limitations. Framework is model-agnostic.</p>
 </div>
 
 <div class="issue">
@@ -288,15 +307,8 @@ These failures share a common root: agents were evaluated on developer-facing be
 <div class="file-meta">Bibliography · 2 issues</div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">Add Ying et al. 2026 (OpenClaw security)</span><span class="sev medium">medium</span></div>
-<p>New citation needed for the intro rewrite.</p>
-<div class="label pro">PROPOSED</div>
-<div class="code pro">@article{ying2026openclaw,
-  title={Uncovering Security Threats and Architecting Defenses in Autonomous Agents: A Case Study of OpenClaw},
-  author={Ying, Zonghao and Yang, Xiao and Wu, Siyang and Song, Yumeng and Qu, Yang and Li, Hainan and Li, Tianlin and Wang, Jiakai and Liu, Aishan and Liu, Xianglong},
-  journal={arXiv preprint arXiv:2603.12644},
-  year={2026}
-}</div>
+<div class="issue-header"><span class="issue-title">Intro citation fixed: ying2026openclaw → openclaw_security2026</span><span class="sev done">applied</span></div>
+<p>The intro used <code>\citep{ying2026openclaw}</code> which showed as (?). Fixed to use existing bib entry <code>openclaw_security2026</code> (Wang et al., "From Assistant to Double Agent").</p>
 </div>
 
 <div class="issue">
@@ -307,18 +319,30 @@ These failures share a common root: agents were evaluated on developer-facing be
 
 <!-- ===== FIGURES ===== -->
 <div class="tab-content" id="file-figures">
-<h2><span class="path">figures/</span> (missing directory)</h2>
-<div class="file-meta">0 figures in the paper · HIGH priority</div>
+<h2><span class="path">SEC/</span>fig_*.pdf</h2>
+<div class="file-meta">3 figures generated · was 0</div>
 
 <div class="issue">
-<div class="issue-header"><span class="issue-title">Paper has ZERO figures</span><span class="sev high">high</span></div>
-<p>Most accepted benchmark papers at COLM/NeurIPS/ICML have 3-5 figures. This paper has tables only. Minimum needed:</p>
-<div class="label pro">PROPOSED FIGURES</div>
-<div class="code pro">Figure 1: System architecture — 5 mock services, agent harness, MCP/CLI, evaluator, snapshot/restore
-Figure 2: Task example walkthrough — one multi-service task showing instruction → agent actions → state changes → evaluation
-Figure 3: Main results visualization — grouped bar chart of TSR/UAR/SCR across conditions (Table 2 as a visual)
-Figure 4 (optional): Sandbox escalation flowchart — the multi-step attack chain
-Figure 5 (optional): Safety scoring illustration — the [-1,1] scale with examples</div>
+<div class="issue-header"><span class="issue-title">fig_architecture.pdf — System architecture</span><span class="sev done">applied</span></div>
+<p>5 mock services (Gmail, Calendar, Docs, Drive, Slack) with SQLite backends, MCP/CLI interface, agent harness (OpenClaw + Gemini CLI with Skills/Meta Prompt), LLM, Daytona sandbox, snapshot/restore, and state-based evaluator. Numbered flow steps (1-5) trace the evaluation pipeline.</p>
+<img src="fig_architecture.png" style="width:100%;margin:8px 0;border:1px solid #e7e5e4;border-radius:6px" alt="System architecture diagram">
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">fig_main_results.pdf — Main results bar chart</span><span class="sev done">applied</span></div>
+<p>Grouped bar chart visualizing Table 4 data: 12 conditions across 3 harness-model groups, each with 4 scaffold conditions. Shows TSR (blue), UAR (red), SCR (green) with 95% CI error bars.</p>
+<img src="fig_main_results.png" style="width:100%;margin:8px 0;border:1px solid #e7e5e4;border-radius:6px" alt="Main results bar chart">
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">fig_task_walkthrough.pdf — Task walkthrough</span><span class="sev done">applied</span></div>
+<p>Walkthrough of multi-rebalance-on-call-rotation task: instruction, 4 agent actions across Docs/Calendar/Slack, state changes, pre/post comparison, scoring with [-1,1] scale illustration.</p>
+<img src="fig_task_walkthrough.png" style="width:100%;margin:8px 0;border:1px solid #e7e5e4;border-radius:6px" alt="Task walkthrough diagram">
+</div>
+
+<div class="issue">
+<div class="issue-header"><span class="issue-title">Sandbox escalation flowchart (optional)</span><span class="sev low">low</span></div>
+<p>Still TODO — would visualize the env discovery → sqlite3 → python3 → API fallback chain.</p>
 </div>
 </div>
 
