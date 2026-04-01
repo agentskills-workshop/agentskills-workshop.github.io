@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Poster Editor</title>
+<style>
+body { margin: 0; font-family: system-ui; background: #1c1917; color: #fff; }
+.toolbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #292524; padding: 8px 16px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid #44403c; }
+.toolbar button { background: #B76E48; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 13px; }
+.toolbar button:hover { background: #9E4A33; }
+.toolbar button.sec { background: #44403c; }
+.toolbar .info { font-size: 12px; color: #a8a29e; margin-left: auto; }
+.canvas { padding: 60px 20px 20px; display: flex; justify-content: center; }
+iframe { border: 2px solid #44403c; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span style="font-weight:700;font-size:14px">Poster Editor</span>
+  <button onclick="save()">Save HTML</button>
+  <button class="sec" onclick="document.getElementById('f').contentDocument.designMode = document.getElementById('f').contentDocument.designMode === 'on' ? 'off' : 'on'">Toggle Edit Mode</button>
+  <button class="sec" onclick="render()">Export PNG</button>
+  <span class="info">Click "Toggle Edit Mode" to directly edit text. Drag elements in DevTools (F12).</span>
+</div>
+<div class="canvas">
+  <iframe id="f" src="poster.html" width="1080" height="1296" style="transform-origin:top center;"></iframe>
+</div>
+<script>
+function save() {
+  const html = document.getElementById('f').contentDocument.documentElement.outerHTML;
+  const blob = new Blob(['<!DOCTYPE html>\n' + html], {type: 'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'poster.html';
+  a.click();
+}
+function render() {
+  alert('To export PNG:\n1. Open poster.html directly in Chrome\n2. Cmd+Shift+P → "Capture full size screenshot"\n\nOr run from terminal:\nnpx capture-website poster.html --output poster.png --width 1080 --height 1296');
+}
+// Scale to fit viewport
+function fitScale() {
+  const f = document.getElementById('f');
+  const avail = window.innerHeight - 80;
+  const scale = Math.min(1, avail / 1296);
+  f.style.transform = 'scale(' + scale + ')';
+  f.parentElement.style.height = (1296 * scale + 40) + 'px';
+}
+window.addEventListener('resize', fitScale);
+window.addEventListener('load', () => setTimeout(fitScale, 500));
+</script>
+</body>
+</html>
