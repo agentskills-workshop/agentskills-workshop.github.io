@@ -332,37 +332,73 @@ Figure 5 (optional): Safety scoring illustration — the [-1,1] scale with examp
 <div class="rev">
 <strong class="q">Q1: Why only Gemini models?</strong> You test two models from a single family. All findings could be Gemini-specific artifacts. Without Claude/GPT/open-weight models, how can you claim general properties of LLM agents?
 </div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐⭐</span></div>
+<p>The primary contribution is the <strong>benchmark environment and task framework</strong>, not a characterization of all models. The experiments are the minimum viable validation that the environments produce meaningful, differentiable signal. We demonstrate this with a controlled 2×2×3 factorial design (2 models × 2 harnesses × 4 scaffold configs = 12 conditions, 2,625 trials). The framework is model-agnostic — 6 agents are registered (claude-agent-acp, pi-acp, openclaw, openclaw-gemini, codex-acp, gemini) and extending to other model families requires only an ACP-compatible harness. Broader model coverage is ongoing work enabled by the open-source release.</p>
+</div>
 
 <div class="rev">
 <strong class="q">Q2: Is 44 tasks enough?</strong> WebArena has 812, SWE-bench has 2,294. How do you know findings aren't driven by task-specific idiosyncrasies?
+</div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐⭐⭐</span></div>
+<p>WebArena's 812 tasks are template-generated (parameterized fill-in-the-blank). Our 44 tasks are <strong>hand-curated</strong> with human-written evaluators, oracle solutions, adversarial needles, and conformance-tested environments. Quality over quantity. Moreover, 44 tasks × 5 repeats × 12 conditions = 2,625 trials. The 30-repeat pilot showed split-half reliability r<sub>SB</sub> ≥ 0.95 for all metrics, meaning 44 tasks is statistically sufficient for condition-level comparisons. Per-task effect estimates require more tasks (acknowledged in Limitations).</p>
 </div>
 
 <div class="rev">
 <strong class="q">Q3: What's the contribution beyond engineering?</strong> Mock environments are engineering. AppWorld/ASTRA-bench already showed mock APIs enable eval. You claim "higher fidelity" but don't ablate fidelity levels.
 </div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐⭐</span></div>
+<p>The contribution is the <strong>empirical findings</strong>, not just the platform. No prior benchmark demonstrated: (a) capability-safety decoupling in productivity domains (scaling +37.5pp TSR, 0pp UAR reduction), (b) domain skills increasing danger by 48% UAR, (c) multi-step sandbox escalation exclusively in stronger models, (d) meta-prompt as an independent safety lever (skills×meta interaction -27.5pp, p=0.003). The environments are a means; the findings are the contribution. The fidelity ablation point is valid — we acknowledge it in Limitations ("we cannot confirm that a simpler mock would produce different agent scores").</p>
+</div>
 
 <div class="rev">
 <strong class="q">Q4: How is Progressive Disclosure different from "documentation"?</strong> Organizing docs into Tier 1/Tier 2 is standard practice, not a research contribution.
+</div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐⭐</span></div>
+<p>The structure is standard; the <strong>ablation</strong> is the contribution. We show that agents without skill specifications produce 1,000+ "unrecognized subcommand" errors by inventing CLI syntax that doesn't exist. With skills: +22-27pp TSR gain. Critically, skills increase danger (UAR spikes to 48% with skills alone) — a finding impossible without the controlled ablation. Nobody has measured the simultaneous effect of structured API knowledge on both capability AND safety. The format itself isn't novel; measuring its impact in a controlled experiment is.</p>
 </div>
 
 <div class="rev">
 <strong class="q">Q5: Capability-safety decoupling is already known.</strong> Anthropic and DeepMind have published on inverse scaling and emergent risks. Your contribution is domain-specific — is that sufficient novelty?
 </div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐⭐</span></div>
+<p>Prior work on inverse scaling shows models getting <em>worse</em> at specific tasks with scale. Our finding is structurally different: models get <strong>better</strong> at tasks (+37.5pp TSR) but safety doesn't improve (UAR not significantly different across model sizes in any condition). This is decoupling, not inverse scaling. Furthermore, this is demonstrated in <strong>the fastest-growing agent deployment area</strong> (85% of orgs now integrate agents, $10.9B market). Domain-specific demonstration where agents are actually being deployed IS the point.</p>
+</div>
 
 <div class="rev">
 <strong class="q">Q6: Where's the GEPA optimization?</strong> Abstract and related work mention it. Experiments don't include it. Is this vaporware?
+</div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐</span></div>
+<p>The meta prompt represents one manually-guided iteration of the GEPA loop: trajectory analysis (1,200 trajectories from 30-repeat pilot) → failure categorization → rule codification → evaluation. The full automated GEPA optimization pipeline is implemented in the framework (clawbench optimize command) but running the complete loop was not feasible within the submission timeline. We should either (a) remove GEPA mentions from abstract/related work, or (b) add a brief appendix showing one optimization iteration. Option (a) is safer.</p>
 </div>
 
 <div class="rev">
 <strong class="q">Q7: No human baseline.</strong> Without a human ceiling, the reader can't assess whether 62% TSR is good or bad.
 </div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐⭐</span></div>
+<p>Oracle solutions (human-written reference implementations) achieve score 1.0 on 33/44 tasks (75% oracle pass rate). This establishes a performance ceiling. The gap between oracle (75%) and best agent (62% TSR) shows meaningful headroom. Add to §5.1: "Oracle solutions (human-written bash scripts) achieve full scores on 75% of tasks, establishing a human-performance ceiling and confirming that the remaining tasks test genuinely difficult cross-service coordination."</p>
+</div>
 
 <div class="rev">
 <strong class="q">Q8: No full error analysis.</strong> You highlight 4 rogue behaviors from 2,625 trials. What's the full distribution of ALL failure modes?
 </div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐⭐</span></div>
+<p>Partial data available: 239 negative-score trials decompose into confidential leakage (47), prompt injection compliance (varies by task), contract modification (25), plus uncategorized. A full breakdown table should go in the appendix. The 4 highlighted behaviors are the most <em>structurally interesting</em> — 2 match the design-time categories, 2 emerged organically (sandbox escalation, contract modification). The emergent ones are more convincing. Need: Appendix table with complete failure mode distribution.</p>
+</div>
 
 <div class="rev">
 <strong class="q">Q9: No cost/efficiency analysis.</strong> How many API calls per task? How much does evaluation cost? How long does it take?
+</div>
+<div class="issue" style="border-left:3px solid #16a34a;margin:4px 0 12px">
+<div class="issue-header"><span class="issue-title">Response ⭐⭐</span></div>
+<p>Need real numbers from Daytona bills and Gemini API usage logs. Rough estimates: 2,625 trials at ~5-15 min each, 64 concurrency on Daytona ≈ 3-4 days wall-clock. API cost depends on model (Flash-Lite much cheaper than Pro). Add a paragraph to §5.1 or appendix: "Total evaluation cost was approximately $X for Y API calls across Z compute hours." <strong>ACTION NEEDED: pull actual cost data from Daytona and Gemini dashboards.</strong></p>
 </div>
 
 <h3 style="color:#ca8a04;margin:24px 0 8px">Methodology Pushbacks</h3>
