@@ -9,13 +9,35 @@ body { margin: 0; overflow: hidden; }
 .gjs-two-color { color: #e7e5e4; }
 .gjs-three-bg { background-color: #44403c; }
 .gjs-four-color, .gjs-four-color-h:hover { color: #B76E48; }
+.zoom-controls {
+  position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 999; display: flex; gap: 6px; background: #292524; padding: 6px 12px;
+  border-radius: 8px; border: 1px solid #44403c; align-items: center;
+}
+.zoom-controls button {
+  background: #44403c; color: #e7e5e4; border: none; padding: 4px 12px;
+  border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600;
+}
+.zoom-controls button:hover { background: #B76E48; }
+.zoom-controls span { color: #a8a29e; font-size: 12px; min-width: 50px; text-align: center; font-family: monospace; }
 </style>
 </head>
 <body>
 <div id="gjs"></div>
+<div class="zoom-controls">
+  <button onclick="zoomOut()">−</button>
+  <span id="zoom-level">100%</span>
+  <button onclick="zoomIn()">+</button>
+  <button onclick="zoomFit()">Fit</button>
+  <button onclick="zoom100()">1:1</button>
+</div>
+
 <script src="https://unpkg.com/grapesjs"></script>
 <script src="https://unpkg.com/grapesjs-preset-webpage"></script>
 <script>
+let currentZoom = 1;
+let gEditor;
+
 fetch('poster.html')
   .then(r => r.text())
   .then(html => {
@@ -23,8 +45,8 @@ fetch('poster.html')
     const doc = parser.parseFromString(html, 'text/html');
     const css = doc.querySelector('style') ? doc.querySelector('style').innerHTML : '';
     const body = doc.querySelector('body') ? doc.querySelector('body').innerHTML : html;
-    
-    const editor = grapesjs.init({
+
+    gEditor = grapesjs.init({
       container: '#gjs',
       height: '100vh',
       width: 'auto',
@@ -40,14 +62,83 @@ fetch('poster.html')
       style: css,
     });
 
-    // Add export button
-    editor.Panels.addButton('options', {
+    gEditor.Panels.addButton('options', {
       id: 'export-html',
       className: 'fa fa-download',
       command: 'export-template',
       attributes: { title: 'Export HTML' }
     });
+
+    // Ctrl/Cmd + scroll to zoom
+    const canvasEl = gEditor.Canvas.getElement();
+    canvasEl.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+        if (e.deltaY < 0) zoomIn();
+        else zoomOut();
+      }
+    }, { passive: false });
+
+    // Space + drag to pan
+    let isPanning = false;
+    let panStart = { x: 0, y: 0 };
+    let scrollStart = { x: 0, y: 0 };
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && !e.target.closest('[contenteditable]')) {
+        e.preventDefault();
+        isPanning = true;
+        canvasEl.style.cursor = 'grab';
+      }
+    });
+    document.addEventListener('keyup', (e) => {
+      if (e.code === 'Space') {
+        isPanning = false;
+        canvasEl.style.cursor = '';
+      }
+    });
+    canvasEl.addEventListener('mousedown', (e) => {
+      if (isPanning) {
+        e.preventDefault();
+        e.stopPropagation();
+        canvasEl.style.cursor = 'grabbing';
+        panStart = { x: e.clientX, y: e.clientY };
+        const frames = canvasEl.querySelector('.gjs-cv-canvas__frames');
+        if (frames) scrollStart = { x: frames.scrollLeft, y: frames.scrollTop };
+      }
+    }, true);
+    canvasEl.addEventListener('mousemove', (e) => {
+      if (isPanning && e.buttons === 1) {
+        const frames = canvasEl.querySelector('.gjs-cv-canvas__frames');
+        if (frames) {
+          frames.scrollLeft = scrollStart.x - (e.clientX - panStart.x);
+          frames.scrollTop = scrollStart.y - (e.clientY - panStart.y);
+        }
+      }
+    }, true);
+    canvasEl.addEventListener('mouseup', () => {
+      if (isPanning) canvasEl.style.cursor = 'grab';
+    }, true);
+
+    // Start at fit zoom
+    setTimeout(() => zoomFit(), 800);
   });
+
+function setZoom(z) {
+  currentZoom = Math.max(0.25, Math.min(2, z));
+  const frame = gEditor.Canvas.getFrameEl();
+  if (frame) {
+    frame.style.transform = 'scale(' + currentZoom + ')';
+    frame.style.transformOrigin = 'top left';
+  }
+  document.getElementById('zoom-level').textContent = Math.round(currentZoom * 100) + '%';
+}
+function zoomIn() { setZoom(currentZoom + 0.1); }
+function zoomOut() { setZoom(currentZoom - 0.1); }
+function zoomFit() {
+  const ch = window.innerHeight - 40;
+  setZoom(Math.min(1, ch / 1080));
+}
+function zoom100() { setZoom(1); }
 </script>
 </body>
 </html>
