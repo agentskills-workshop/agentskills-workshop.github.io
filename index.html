@@ -55,11 +55,12 @@ section:last-of-type { border-bottom: none; }
 h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 
 /* Topics */
-.topics { list-style: none; padding: 0; }
-.topics li { padding: 0.6rem 0; border-bottom: 1px solid var(--platinum); display: grid; grid-template-columns: 22px auto 1fr; gap: 0.5rem; align-items: baseline; }
-.topics li:last-child { border: none; }
-.t-num { color: var(--terracotta-deep); font-weight: 600; }
-.t-title { font-weight: 600; white-space: nowrap; }
+.topics { list-style: none; padding: 0; display: table; width: 100%; border-collapse: collapse; }
+.topics li { display: table-row; }
+.topics li > span { display: table-cell; padding: 0.6rem 0; border-bottom: 1px solid var(--platinum); vertical-align: baseline; }
+.topics li:last-child > span { border-bottom: none; }
+.t-num { color: var(--terracotta-deep); font-weight: 600; width: 22px; padding-right: 0.25rem !important; }
+.t-title { font-weight: 600; white-space: nowrap; padding-right: 0.75rem !important; }
 .t-desc { color: var(--davys-gray); }
 
 /* Dates */
