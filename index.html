@@ -56,10 +56,10 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 
 /* Topics */
 .topics { list-style: none; padding: 0; }
-.topics li { padding: 0.6rem 0; border-bottom: 1px solid var(--platinum); display: flex; gap: 0.75rem; }
+.topics li { padding: 0.6rem 0; border-bottom: 1px solid var(--platinum); display: grid; grid-template-columns: 22px auto 1fr; gap: 0.5rem; align-items: baseline; }
 .topics li:last-child { border: none; }
-.t-num { color: var(--terracotta-deep); font-weight: 600; min-width: 22px; }
-.t-title { font-weight: 600; }
+.t-num { color: var(--terracotta-deep); font-weight: 600; }
+.t-title { font-weight: 600; white-space: nowrap; }
 .t-desc { color: var(--davys-gray); }
 
 /* Dates */
@@ -161,10 +161,10 @@ footer a { color: var(--terracotta-light); }
   <h2>Topics of Interest</h2>
   <p>We invite contributions across the full lifecycle of Agent Skills, including but not limited to the topics below. This list is not exhaustive&mdash;we welcome submissions in any related area.</p>
   <ol class="topics">
-    <li><span class="t-num">1.</span><span class="t-title">Agent Skills &amp; Applications</span> &mdash; <span class="t-desc">Skills for agent harnesses (OpenClaw, NanoClaw, MetaClaw, Pi); design &amp; authoring principles; structure&ndash;efficacy relationships; domain-specific patterns; composition &amp; scaling</span></li>
-    <li><span class="t-num">2.</span><span class="t-title">Evaluation &amp; Benchmarking</span> &mdash; <span class="t-desc">Frameworks treating Skills as first-class artifacts; metrics beyond pass rate; benchmark design; Skill impact measurement</span></li>
-    <li><span class="t-num">3.</span><span class="t-title">Safety &amp; Supply Chain</span> &mdash; <span class="t-desc">Malicious Skill detection; formal verification; supply-chain attacks; prompt injection via Skills; ecosystems &amp; infrastructure security</span></li>
-    <li><span class="t-num">4.</span><span class="t-title">Improvement &amp; Learning</span> &mdash; <span class="t-desc">LLM-based Skill generation; RL refinement; evolutionary approaches; feedback-based improvement; trajectory mining for Skill discovery; continual learning</span></li>
+    <li><span class="t-num">1.</span><span class="t-title">Agent Skills &amp; Applications</span><span class="t-desc">&mdash; Skills for agent harnesses (OpenClaw, NanoClaw, MetaClaw, Pi); design &amp; authoring principles; structure&ndash;efficacy relationships; domain-specific patterns; composition &amp; scaling</span></li>
+    <li><span class="t-num">2.</span><span class="t-title">Evaluation &amp; Benchmarking</span><span class="t-desc">&mdash; Frameworks treating Skills as first-class artifacts; metrics beyond pass rate; benchmark design; Skill impact measurement</span></li>
+    <li><span class="t-num">3.</span><span class="t-title">Safety &amp; Supply Chain</span><span class="t-desc">&mdash; Malicious Skill detection; formal verification; supply-chain attacks; prompt injection via Skills; ecosystems &amp; infrastructure security</span></li>
+    <li><span class="t-num">4.</span><span class="t-title">Improvement &amp; Learning</span><span class="t-desc">&mdash; LLM-based Skill generation; RL refinement; evolutionary approaches; feedback-based improvement; trajectory mining for Skill discovery; continual learning</span></li>
   </ol>
 </section>
 
