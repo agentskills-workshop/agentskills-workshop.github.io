@@ -67,6 +67,10 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 .program-stat .label { color: var(--davys-gray); display: block; font-size: 0.85rem; margin-top: 0.35rem; }
 .program-note { color: var(--davys-gray); font-size: 0.92rem; margin-top: 1rem; }
 .program-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.85rem; }
+.sponsor-list { align-items: center; display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.25rem 0; }
+.sponsor-logo { align-items: center; background: #fff; border: 1px solid var(--platinum); display: inline-flex; min-height: 52px; padding: 0.6rem 0.9rem; transition: border-color 200ms, transform 200ms; }
+.sponsor-logo:hover { border-color: var(--terracotta-deep); text-decoration: none; transform: translateY(-1px); }
+.sponsor-logo img { display: block; height: 28px; width: auto; }
 .event-card { border: 2px solid var(--eerie-black); background: #fff; padding: 1.5rem; margin-top: 1.25rem; }
 .event-card .kicker { color: var(--terracotta-deep); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .event-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
@@ -96,6 +100,8 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 .submit-box p { font-size: 0.92rem; color: var(--davys-gray); margin-bottom: 0.75rem; }
 .btn-cais { background: var(--terracotta-deep); color: #fff; font-weight: 600; font-size: 0.88rem; padding: 0.5rem 1.5rem; border: none; transition: background 200ms; display: inline-flex; align-items: center; justify-content: center; line-height: 1.4; }
 .btn-cais:hover { background: #9E4A33; color: #fff; }
+.btn-openreview { background: var(--olive-moss); color: #fff; font-weight: 700; font-size: 0.88rem; padding: 0.5rem 1.5rem; border: none; transition: background 200ms, transform 200ms; display: inline-flex; align-items: center; justify-content: center; line-height: 1.4; }
+.btn-openreview:hover { background: #536848; color: #fff; text-decoration: none; transform: translateY(-1px); }
 
 /* Schedule */
 .sched .row-sched { display: flex; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--platinum); font-size: 0.93rem; }
@@ -196,10 +202,11 @@ footer a { color: var(--terracotta-light); }
     <div class="program-stat"><span class="num">45</span><span class="label">Accepted posters</span></div>
     <div class="program-stat"><span class="num">6</span><span class="label">Oral presentations</span></div>
   </div>
-  <p class="program-note">Accepted papers and OpenReview results are now public.</p>
+  <p class="program-note">Accepted papers are available now.</p>
   <div class="program-actions">
-    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-oral" class="btn btn-cais" target="_blank" rel="noopener"><i class="bi bi-megaphone me-1" aria-hidden="true"></i>View Oral Results</a>
-    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-poster" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-grid-3x3-gap me-1" aria-hidden="true"></i>View Poster Results</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills" class="btn btn-openreview" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right me-1" aria-hidden="true"></i>View It on OpenReview</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-oral" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-megaphone me-1" aria-hidden="true"></i>Oral Results</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-poster" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-grid-3x3-gap me-1" aria-hidden="true"></i>Poster Results</a>
   </div>
 </section>
 
@@ -316,6 +323,11 @@ footer a { color: var(--terracotta-light); }
 
 <section id="sponsors">
   <h2>Sponsors</h2>
+  <div class="sponsor-list">
+    <a class="sponsor-logo" href="https://www.k-dense.ai/" target="_blank" rel="noopener">
+      <img src="k-dense-logo.png" alt="K-Dense">
+    </a>
+  </div>
   <p>Interested in supporting Agent Skills '26? We welcome sponsorship at all levels. Please reach out at <a href="mailto:public@agentskills-workshop.org">public@agentskills-workshop.org</a> for details.</p>
 </section>
 
