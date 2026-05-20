@@ -44,8 +44,11 @@ code { background: rgba(184,89,62,0.06); padding: 2px 5px; border-radius: 3px; f
   text-align: center;
 }
 .hero h1 { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.02em; }
+.hero-pill { align-items: center; background: rgba(255,255,255,0.72); border: 1px solid rgba(184,89,62,0.34); border-radius: 999px; color: var(--terracotta-deep); display: inline-flex; font-size: 0.78rem; font-weight: 700; gap: 0.35rem; letter-spacing: 0.02em; margin-bottom: 0.9rem; padding: 0.34rem 0.85rem; transition: all 200ms; }
+.hero-pill:hover { background: #fff; border-color: var(--terracotta-deep); color: #9E4A33; text-decoration: none; transform: translateY(-1px); }
 .hero .subtitle { font-size: 1.1rem; color: var(--davys-gray); max-width: 640px; margin: 0.5rem auto 0; }
 .hero .info { font-size: 0.95rem; margin-top: 1.5rem; }
+.hero .info img { vertical-align: middle; }
 .hero .cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
 .btn-outline-cais { border: 2px solid var(--eerie-black); color: var(--eerie-black); font-weight: 600; font-size: 0.88rem; padding: 0.5rem 1.5rem; background: transparent; transition: all 200ms; }
 .btn-outline-cais:hover { background: var(--eerie-black); color: var(--seasalt); }
@@ -54,6 +57,25 @@ code { background: rgba(184,89,62,0.06); padding: 2px 5px; border-radius: 3px; f
 section { padding: 4rem 0; border-bottom: 1px solid var(--platinum); }
 section:last-of-type { border-bottom: none; }
 h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+
+/* Program + event callouts */
+.announcement { border-left: 4px solid var(--terracotta-deep); padding: 1rem 1.25rem; margin-top: 1.5rem; background: #fff; }
+.announcement p { margin: 0; color: var(--davys-gray); }
+.program-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1.25rem; }
+.program-stat { border: 1px solid var(--platinum); background: #fff; padding: 1rem; }
+.program-stat .num { color: var(--terracotta-deep); display: block; font-size: 1.85rem; font-weight: 700; line-height: 1; }
+.program-stat .label { color: var(--davys-gray); display: block; font-size: 0.85rem; margin-top: 0.35rem; }
+.program-note { color: var(--davys-gray); font-size: 0.92rem; margin-top: 1rem; }
+.program-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.85rem; }
+.event-card { border: 2px solid var(--eerie-black); background: #fff; padding: 1.5rem; margin-top: 1.25rem; }
+.event-card .kicker { color: var(--terracotta-deep); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.event-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
+.event-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; margin: 1rem 0; }
+.event-meta div { color: var(--davys-gray); font-size: 0.92rem; }
+.event-meta i { color: var(--terracotta-deep); margin-right: 0.4rem; }
+.event-card ul { margin-bottom: 1rem; }
+.event-card li { margin-bottom: 0.25rem; }
+.track-list { margin-bottom: 0.75rem; }
 
 /* Topics */
 .topics { list-style: none; padding: 0; display: table; width: 100%; border-collapse: collapse; }
@@ -109,6 +131,8 @@ footer a { color: var(--terracotta-light); }
 
 @media (max-width: 640px) {
   .hero h1 { font-size: 2rem; }
+  .program-stats { grid-template-columns: 1fr; }
+  .event-meta { grid-template-columns: 1fr; }
   .people { grid-template-columns: repeat(3, 1fr); }
   @media (max-width: 480px) { .people { grid-template-columns: repeat(2, 1fr); } }
   .dates .key { min-width: 140px; }
@@ -120,13 +144,14 @@ footer a { color: var(--terracotta-light); }
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#"><img src="ACM_CAIS_Logo.svg" alt="ACM CAIS" height="28" class="me-2"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+        <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
         <li class="nav-item"><a class="nav-link" href="#topics">Topics</a></li>
-        <li class="nav-item"><a class="nav-link" href="#cfp">Call for Papers</a></li>
         <li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="#afterparty">After Party</a></li>
         <li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
         <li class="nav-item"><a class="nav-link" href="#organizers">Organizers</a></li>
         <li class="nav-item"><a class="nav-link btn btn-sm btn-cais ms-2" href="https://docs.google.com/forms/d/e/1FAIpQLSeJmpJ14iFSUENH7-wzZgtmtsaoiJk1oEF8r4HN3BnEEHYzjA/viewform" target="_blank">Subscribe</a></li>
@@ -137,15 +162,16 @@ footer a { color: var(--terracotta-light); }
 
 <div class="hero">
   <div class="container">
+    <a href="https://luma.com/deepmind-634c" class="hero-pill" target="_blank" rel="noopener"><i class="bi bi-ticket-perforated" aria-hidden="true"></i>After Party &middot; May 27 &middot; RSVP</a>
     <h1>Agent Skills '26</h1>
     <div class="subtitle">The First Workshop on Agent Skills &mdash; Design, Evaluation, and Optimization of Procedural Knowledge for LLM Agents</div>
     <div class="info">
-      <img src="ACM_CAIS_Logo.svg" alt="ACM CAIS" height="24" class="me-2" style="vertical-align:middle;">
+      <img src="ACM_CAIS_Logo.svg" alt="ACM CAIS" height="24" class="me-2">
       May 26, 2026 &middot; San Jose, CA &middot; Full day
     </div>
     <div class="cta">
-      <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills" class="btn btn-cais" target="_blank">Submit Paper</a>
-      <a href="#cfp" class="btn btn-outline-cais">Call for Papers</a>
+      <a href="#program" class="btn btn-cais"><i class="bi bi-journal-text me-1" aria-hidden="true"></i>Accepted Program</a>
+      <a href="#afterparty" class="btn btn-outline-cais"><i class="bi bi-calendar-event me-1" aria-hidden="true"></i>After Party</a>
     </div>
   </div>
 </div>
@@ -157,6 +183,24 @@ footer a { color: var(--terracotta-light); }
   <p>LLM-based agents are rapidly moving from research demos to production systems&mdash;but their effectiveness hinges on the procedural knowledge they can access at inference time. <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"><strong>Agent Skills</strong></a> are an emerging answer: structured packages of instructions, scripts, and references that augment agents without model modification.</p>
   <p>A Skill is a <code>SKILL.md</code> file adopted across Claude Code, Gemini CLI, OpenClaw, Codex, and 30+ agent platforms. Eight focused Skills papers appeared in Feb&ndash;Mar 2026. An audit of 3,984 Skills found 37% contained security flaws. SkillsBench revealed that curated Skills improve pass rates by 16.2 points on average, yet self-generated Skills can <em>hurt</em> performance in nearly a third of tasks.</p>
   <p><strong>The field is moving fast and needs a dedicated venue.</strong> Agent Skills '26 brings together researchers and practitioners working on Skills design, benchmarking, optimization, security, and ecosystem infrastructure.</p>
+  <div class="announcement">
+    <p><strong>Program update:</strong> Agent Skills '26 received 103 submissions and accepted 45 posters and 6 oral presentations.</p>
+  </div>
+</section>
+
+<section id="program">
+  <h2>Accepted Program</h2>
+  <p>The workshop program spans skill applications, safety, evaluation, and learning, with accepted papers presented across poster and oral sessions.</p>
+  <div class="program-stats">
+    <div class="program-stat"><span class="num">103</span><span class="label">Submissions received</span></div>
+    <div class="program-stat"><span class="num">45</span><span class="label">Accepted posters</span></div>
+    <div class="program-stat"><span class="num">6</span><span class="label">Oral presentations</span></div>
+  </div>
+  <p class="program-note">Accepted papers and OpenReview results are now public.</p>
+  <div class="program-actions">
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-oral" class="btn btn-cais" target="_blank" rel="noopener"><i class="bi bi-megaphone me-1" aria-hidden="true"></i>View Oral Results</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-poster" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-grid-3x3-gap me-1" aria-hidden="true"></i>View Poster Results</a>
+  </div>
 </section>
 
 <section id="topics">
@@ -171,9 +215,9 @@ footer a { color: var(--terracotta-light); }
 </section>
 
 <section id="cfp">
-  <h2>Call for Papers</h2>
-  <p>We accept two tracks:</p>
-  <ul style="margin-bottom:0.75rem;">
+  <h2>Author Information</h2>
+  <p>Accepted papers were reviewed across two tracks:</p>
+  <ul class="track-list">
     <li><strong>Full papers</strong> &mdash; up to 9 pages + references</li>
     <li><strong>Short papers</strong> &mdash; up to 4 pages + references</li>
   </ul>
@@ -188,12 +232,8 @@ footer a { color: var(--terracotta-light); }
     <div class="row-date"><span class="key">Workshop day</span><span>May 26, 2026</span></div>
   </div>
   <div class="submit-box">
-    <p><strong>Submission portal is now open.</strong> Submit your paper via OpenReview.</p>
-    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills" class="btn btn-cais" target="_blank">Submit on OpenReview &rarr;</a>
-  </div>
-  <div style="margin-top:1.25rem;">
-    <p><strong>Interested in reviewing?</strong> We are recruiting reviewers with expertise in agent skills, tool use, benchmarking, and related areas. Self-nominate below.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfust4czHwJM3SvKNcuIPojJiS-QCevVwP1HzYMjaonF0WLhQ/viewform" class="btn btn-outline-cais" target="_blank" style="margin-top:0.5rem;">Reviewer Self-Nomination &rarr;</a>
+    <p><strong>Camera-ready deadline:</strong> Accepted authors should submit final versions by May 24, 2026 (AoE).</p>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills" class="btn btn-cais" target="_blank" rel="noopener">OpenReview &rarr;</a>
   </div>
 </section>
 
@@ -215,6 +255,28 @@ footer a { color: var(--terracotta-light); }
     <div class="row-sched"><span class="time">15:00 – 16:30</span><span><span class="title">Poster Session</span></span></div>
     <div class="row-sched"><span class="time">16:30 – 17:20</span><span><span class="title">Panel Discussion</span></span></div>
     <div class="row-sched"><span class="time">17:20 – 17:30</span><span><span class="title">Closing Remarks</span></span></div>
+  </div>
+</section>
+
+<section id="afterparty">
+  <h2>After Party</h2>
+  <p>Continue the conversation after the workshop at the SkillsBench 1.0 Launch Party, presented by Google DeepMind.</p>
+  <div class="event-card">
+    <div class="kicker">Hosted with Google DeepMind</div>
+    <h3>SkillsBench 1.0 Launch Party</h3>
+    <p>BenchFlow, Google DeepMind, Kaggle, and Kernel Labs are bringing together researchers and practitioners working on skill design, benchmarking, optimization, security, and ecosystem infrastructure.</p>
+    <div class="event-meta">
+      <div><i class="bi bi-calendar-event" aria-hidden="true"></i>May 27, 2026</div>
+      <div><i class="bi bi-clock" aria-hidden="true"></i>7:00&ndash;9:00 PM PT</div>
+      <div><i class="bi bi-geo-alt" aria-hidden="true"></i>San Francisco, CA</div>
+      <div><i class="bi bi-ticket-perforated" aria-hidden="true"></i>Approval-required registration</div>
+    </div>
+    <ul>
+      <li>Live demos and talks on creating new benchmarks and RL environments with the BenchFlow SDK</li>
+      <li>Takeaways from building Kaggle's new agent benchmarks for open model evaluations</li>
+      <li>Additional speakers and community sessions</li>
+    </ul>
+    <a href="https://luma.com/deepmind-634c" class="btn btn-cais" target="_blank" rel="noopener">Register on Luma &rarr;</a>
   </div>
 </section>
 
