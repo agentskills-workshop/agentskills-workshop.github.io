@@ -66,6 +66,7 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 .program-stat .num { color: var(--terracotta-deep); display: block; font-size: 1.85rem; font-weight: 700; line-height: 1; }
 .program-stat .label { color: var(--davys-gray); display: block; font-size: 0.85rem; margin-top: 0.35rem; }
 .program-note { color: var(--davys-gray); font-size: 0.92rem; margin-top: 1rem; }
+.program-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.85rem; }
 .event-card { border: 2px solid var(--eerie-black); background: #fff; padding: 1.5rem; margin-top: 1.25rem; }
 .event-card .kicker { color: var(--terracotta-deep); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .event-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
@@ -195,7 +196,11 @@ footer a { color: var(--terracotta-light); }
     <div class="program-stat"><span class="num">45</span><span class="label">Accepted posters</span></div>
     <div class="program-stat"><span class="num">6</span><span class="label">Oral presentations</span></div>
   </div>
-  <p class="program-note">Accepted papers and OpenReview results will be made public soon on <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills" target="_blank" rel="noopener">OpenReview</a>.</p>
+  <p class="program-note">Accepted papers and OpenReview results are now public.</p>
+  <div class="program-actions">
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-oral" class="btn btn-cais" target="_blank" rel="noopener"><i class="bi bi-megaphone me-1" aria-hidden="true"></i>View Oral Results</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-poster" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-grid-3x3-gap me-1" aria-hidden="true"></i>View Poster Results</a>
+  </div>
 </section>
 
 <section id="topics">
