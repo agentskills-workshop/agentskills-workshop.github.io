@@ -100,6 +100,8 @@ h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 .submit-box p { font-size: 0.92rem; color: var(--davys-gray); margin-bottom: 0.75rem; }
 .btn-cais { background: var(--terracotta-deep); color: #fff; font-weight: 600; font-size: 0.88rem; padding: 0.5rem 1.5rem; border: none; transition: background 200ms; display: inline-flex; align-items: center; justify-content: center; line-height: 1.4; }
 .btn-cais:hover { background: #9E4A33; color: #fff; }
+.btn-openreview { background: var(--olive-moss); color: #fff; font-weight: 700; font-size: 0.88rem; padding: 0.5rem 1.5rem; border: none; transition: background 200ms, transform 200ms; display: inline-flex; align-items: center; justify-content: center; line-height: 1.4; }
+.btn-openreview:hover { background: #536848; color: #fff; text-decoration: none; transform: translateY(-1px); }
 
 /* Schedule */
 .sched .row-sched { display: flex; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--platinum); font-size: 0.93rem; }
@@ -200,10 +202,11 @@ footer a { color: var(--terracotta-light); }
     <div class="program-stat"><span class="num">45</span><span class="label">Accepted posters</span></div>
     <div class="program-stat"><span class="num">6</span><span class="label">Oral presentations</span></div>
   </div>
-  <p class="program-note">Accepted papers and OpenReview results are now public.</p>
+  <p class="program-note">Accepted papers are available now.</p>
   <div class="program-actions">
-    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-oral" class="btn btn-cais" target="_blank" rel="noopener"><i class="bi bi-megaphone me-1" aria-hidden="true"></i>View Oral Results</a>
-    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-poster" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-grid-3x3-gap me-1" aria-hidden="true"></i>View Poster Results</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills" class="btn btn-openreview" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right me-1" aria-hidden="true"></i>View It on OpenReview</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-oral" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-megaphone me-1" aria-hidden="true"></i>Oral Results</a>
+    <a href="https://openreview.net/group?id=ACM.org/CAIS/2026/Workshop/AgentSkills#tab-accept-poster" class="btn btn-outline-cais" target="_blank" rel="noopener"><i class="bi bi-grid-3x3-gap me-1" aria-hidden="true"></i>Poster Results</a>
   </div>
 </section>
 
